@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A759CEC17213F3900864F0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A759CEB17213F3900864F0A /* UIKit.framework */; };
+		1A759CEE17213F3900864F0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A759CED17213F3900864F0A /* Foundation.framework */; };
+		1A759CF017213F3900864F0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A759CEF17213F3900864F0A /* CoreGraphics.framework */; };
+		1AFC71B1192382BB003B85FB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC719F192382BB003B85FB /* Default-568h@2x.png */; };
+		1AFC71B2192382BB003B85FB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A0192382BB003B85FB /* Default.png */; };
+		1AFC71B3192382BB003B85FB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A1192382BB003B85FB /* Default@2x.png */; };
+		1AFC71B4192382BB003B85FB /* diamond_upholstery.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A2192382BB003B85FB /* diamond_upholstery.png */; };
+		1AFC71B5192382BB003B85FB /* diamond_upholstery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A3192382BB003B85FB /* diamond_upholstery@2x.png */; };
+		1AFC71B6192382BB003B85FB /* IHViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A4192382BB003B85FB /* IHViewController_iPad.xib */; };
+		1AFC71B7192382BB003B85FB /* IHViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A6192382BB003B85FB /* IHViewController_iPhone.xib */; };
+		1AFC71B8192382BB003B85FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC71A8192382BB003B85FB /* InfoPlist.strings */; };
+		1AFC71B9192382BB003B85FB /* IHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC71AB192382BB003B85FB /* IHAppDelegate.m */; };
+		1AFC71BB192382BB003B85FB /* IHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC71AF192382BB003B85FB /* IHViewController.m */; };
+		1AFC71BC192382BB003B85FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC71B0192382BB003B85FB /* main.m */; };
+		4C0593D91932D1D800BFD714 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0593D81932D1D800BFD714 /* IHKeyboardAvoiding.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A759CE817213F3900864F0A /* KeyboardStateScroller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardStateScroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A759CEB17213F3900864F0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1A759CED17213F3900864F0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A759CEF17213F3900864F0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1AFC719F192382BB003B85FB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1AFC71A0192382BB003B85FB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		1AFC71A1192382BB003B85FB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1AFC71A2192382BB003B85FB /* diamond_upholstery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond_upholstery.png; sourceTree = "<group>"; };
+		1AFC71A3192382BB003B85FB /* diamond_upholstery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diamond_upholstery@2x.png"; sourceTree = "<group>"; };
+		1AFC71A5192382BB003B85FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IHViewController_iPad.xib; sourceTree = "<group>"; };
+		1AFC71A7192382BB003B85FB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IHViewController_iPhone.xib; sourceTree = "<group>"; };
+		1AFC71A9192382BB003B85FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1AFC71AA192382BB003B85FB /* IHAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHAppDelegate.h; sourceTree = "<group>"; };
+		1AFC71AB192382BB003B85FB /* IHAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHAppDelegate.m; sourceTree = "<group>"; };
+		1AFC71AE192382BB003B85FB /* IHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHViewController.h; sourceTree = "<group>"; };
+		1AFC71AF192382BB003B85FB /* IHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHViewController.m; sourceTree = "<group>"; };
+		1AFC71B0192382BB003B85FB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4C0593D71932D1D800BFD714 /* IHKeyboardAvoiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHKeyboardAvoiding.h; sourceTree = "<group>"; };
+		4C0593D81932D1D800BFD714 /* IHKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardAvoiding.m; sourceTree = "<group>"; };
+		4C0593DA1932D34900BFD714 /* IHKeyboardAvoiding-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IHKeyboardAvoiding-Info.plist"; sourceTree = "<group>"; };
+		4C0593DB1932D34900BFD714 /* IHKeyboardAvoiding-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHKeyboardAvoiding-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A759CE517213F3900864F0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A759CEC17213F3900864F0A /* UIKit.framework in Frameworks */,
+				1A759CEE17213F3900864F0A /* Foundation.framework in Frameworks */,
+				1A759CF017213F3900864F0A /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A759CDF17213F3900864F0A = {
+			isa = PBXGroup;
+			children = (
+				1AFC71BD192385F3003B85FB /* IHKeyboardAvoiding */,
+				1AFC719E192382BB003B85FB /* IHKeyboardAvoidingDemo */,
+				1AFC719519238202003B85FB /* Supporting Files */,
+				1A759CEA17213F3900864F0A /* Frameworks */,
+				1A759CE917213F3900864F0A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A759CE917213F3900864F0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A759CE817213F3900864F0A /* KeyboardStateScroller.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A759CEA17213F3900864F0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A759CEB17213F3900864F0A /* UIKit.framework */,
+				1A759CED17213F3900864F0A /* Foundation.framework */,
+				1A759CEF17213F3900864F0A /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1AFC719519238202003B85FB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC71A8192382BB003B85FB /* InfoPlist.strings */,
+				4C0593DA1932D34900BFD714 /* IHKeyboardAvoiding-Info.plist */,
+				4C0593DB1932D34900BFD714 /* IHKeyboardAvoiding-Prefix.pch */,
+				1AFC71B0192382BB003B85FB /* main.m */,
+			);
+			name = "Supporting Files";
+			path = Example;
+			sourceTree = "<group>";
+		};
+		1AFC719E192382BB003B85FB /* IHKeyboardAvoidingDemo */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC719F192382BB003B85FB /* Default-568h@2x.png */,
+				1AFC71A0192382BB003B85FB /* Default.png */,
+				1AFC71A1192382BB003B85FB /* Default@2x.png */,
+				1AFC71A2192382BB003B85FB /* diamond_upholstery.png */,
+				1AFC71A3192382BB003B85FB /* diamond_upholstery@2x.png */,
+				1AFC71A4192382BB003B85FB /* IHViewController_iPad.xib */,
+				1AFC71A6192382BB003B85FB /* IHViewController_iPhone.xib */,
+				1AFC71AA192382BB003B85FB /* IHAppDelegate.h */,
+				1AFC71AB192382BB003B85FB /* IHAppDelegate.m */,
+				1AFC71AE192382BB003B85FB /* IHViewController.h */,
+				1AFC71AF192382BB003B85FB /* IHViewController.m */,
+			);
+			name = IHKeyboardAvoidingDemo;
+			path = Example;
+			sourceTree = "<group>";
+		};
+		1AFC71BD192385F3003B85FB /* IHKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				4C0593D71932D1D800BFD714 /* IHKeyboardAvoiding.h */,
+				4C0593D81932D1D800BFD714 /* IHKeyboardAvoiding.m */,
+			);
+			name = IHKeyboardAvoiding;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A759CE717213F3900864F0A /* KeyboardStateScroller */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A759D0E17213F3900864F0A /* Build configuration list for PBXNativeTarget "KeyboardStateScroller" */;
+			buildPhases = (
+				1A759CE417213F3900864F0A /* Sources */,
+				1A759CE517213F3900864F0A /* Frameworks */,
+				1A759CE617213F3900864F0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeyboardStateScroller;
+			productName = KeyboardStateScroller;
+			productReference = 1A759CE817213F3900864F0A /* KeyboardStateScroller.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A759CE017213F3900864F0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IH;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Idle Hands Apps";
+			};
+			buildConfigurationList = 1A759CE317213F3900864F0A /* Build configuration list for PBXProject "IHKeyboardAvoiding" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A759CDF17213F3900864F0A;
+			productRefGroup = 1A759CE917213F3900864F0A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A759CE717213F3900864F0A /* KeyboardStateScroller */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A759CE617213F3900864F0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AFC71B7192382BB003B85FB /* IHViewController_iPhone.xib in Resources */,
+				1AFC71B8192382BB003B85FB /* InfoPlist.strings in Resources */,
+				1AFC71B3192382BB003B85FB /* Default@2x.png in Resources */,
+				1AFC71B1192382BB003B85FB /* Default-568h@2x.png in Resources */,
+				1AFC71B2192382BB003B85FB /* Default.png in Resources */,
+				1AFC71B6192382BB003B85FB /* IHViewController_iPad.xib in Resources */,
+				1AFC71B5192382BB003B85FB /* diamond_upholstery@2x.png in Resources */,
+				1AFC71B4192382BB003B85FB /* diamond_upholstery.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A759CE417213F3900864F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AFC71B9192382BB003B85FB /* IHAppDelegate.m in Sources */,
+				1AFC71BC192382BB003B85FB /* main.m in Sources */,
+				4C0593D91932D1D800BFD714 /* IHKeyboardAvoiding.m in Sources */,
+				1AFC71BB192382BB003B85FB /* IHViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1AFC71A4192382BB003B85FB /* IHViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AFC71A5192382BB003B85FB /* en */,
+			);
+			name = IHViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		1AFC71A6192382BB003B85FB /* IHViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AFC71A7192382BB003B85FB /* en */,
+			);
+			name = IHViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		1AFC71A8192382BB003B85FB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1AFC71A9192382BB003B85FB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A759D0C17213F3900864F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A759D0D17213F3900864F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A759D0F17213F3900864F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Example/IHKeyboardAvoiding-Prefix.pch";
+				INFOPLIST_FILE = "Example/IHKeyboardAvoiding-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1A759D1017213F3900864F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Example/IHKeyboardAvoiding-Prefix.pch";
+				INFOPLIST_FILE = "Example/IHKeyboardAvoiding-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A759CE317213F3900864F0A /* Build configuration list for PBXProject "IHKeyboardAvoiding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A759D0C17213F3900864F0A /* Debug */,
+				1A759D0D17213F3900864F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A759D0E17213F3900864F0A /* Build configuration list for PBXNativeTarget "KeyboardStateScroller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A759D0F17213F3900864F0A /* Debug */,
+				1A759D1017213F3900864F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A759CE017213F3900864F0A /* Project object */;
+}

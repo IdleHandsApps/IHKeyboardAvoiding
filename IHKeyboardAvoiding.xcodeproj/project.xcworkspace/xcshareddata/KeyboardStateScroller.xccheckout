@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1A837E4E-93F4-4A1A-9590-EF159EB5B30E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>KeyboardStateScroller</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9D802715-C427-4D0C-9584-6580CA2299FA</key>
+		<string>https://github.com/IdleHandsApps/KeyboardStateScroller.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>KeyboardStateScroller.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9D802715-C427-4D0C-9584-6580CA2299FA</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/IdleHandsApps/KeyboardStateScroller.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9D802715-C427-4D0C-9584-6580CA2299FA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9D802715-C427-4D0C-9584-6580CA2299FA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>KeyboardStateScroller</string>
+		</dict>
+	</array>
+</dict>
+</plist>
