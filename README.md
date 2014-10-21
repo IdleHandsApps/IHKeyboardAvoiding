@@ -1,6 +1,8 @@
 
 An elegant solution for keeping any UIView visible when the keyboard is being shown
 
+![alt demo](https://github.com/IdleHandsApps/IHKeyboardAvoiding/blob/gh-pages/IHKeyboardAvoidingDemo.gif)
+
 ## Description
 
 IHKeyboardAvoiding will translate any UIView up when the keyboard is being shown, then return it when the keyboard is hidden.  
