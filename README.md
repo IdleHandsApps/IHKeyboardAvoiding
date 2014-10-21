@@ -56,4 +56,3 @@ https://github.com/danielamitay/DAKeyboardControl (looks interesting)
 ## Do To:
 
 * Improve demo project
-* Gif demo
