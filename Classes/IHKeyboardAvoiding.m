@@ -19,7 +19,6 @@ static BOOL _isKeyboardVisible;
 static BOOL _avoidingViewUsesAutoLayout;
 static int _buffer = 0;
 static int _padding = 0;
-static float _defaultAnimationDuration = 0.3; // If keyboard is not animating, animate the avoiding view anyway
 static KeyboardAvoidingMode _keyboardAvoidingMode = KeyboardAvoidingModeMinimum;
 static float _minimumAnimationDuration;
 
@@ -59,9 +58,6 @@ static float _minimumAnimationDuration;
     
     // get animation duration
     float animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    if (animationDuration == 0) {
-        animationDuration = _defaultAnimationDuration;
-    }
     
     if (isKeyBoardShowing) {
         for (int i = 0; i < _targetViews.count; i++) {
@@ -125,18 +121,20 @@ static float _minimumAnimationDuration;
                     if (_avoidingViewUsesAutoLayout) { // if view uses constrains
                         for (NSLayoutConstraint *constraint in _avoidingView.superview.constraints) {
                             if (constraint.secondItem == _avoidingView && (constraint.secondAttribute == NSLayoutAttributeCenterY || constraint.secondAttribute == NSLayoutAttributeTop || constraint.secondAttribute == NSLayoutAttributeBottom)) {
-                                [_updatedConstraints addObject:constraint];
-                                [_updatedConstraintConstants addObject:[NSNumber numberWithFloat:constraint.constant]];
+                                if (![_updatedConstraints containsObject:constraint]) {
+                                    [_updatedConstraints addObject:constraint];
+                                    [_updatedConstraintConstants addObject:[NSNumber numberWithFloat:constraint.constant]];
+                                }
                                 constraint.constant -= displacement;
                                 break;
                             }
                         }
                         [_avoidingView.superview setNeedsUpdateConstraints];
                     }
-
+                    
                     [UIView animateWithDuration:animationDuration
                                           delay:delay
-                                        options:(animationCurve << 16)
+                                        options:animationDuration > 0 ? (animationCurve << 16) : UIViewAnimationOptionCurveLinear
                                      animations:^{
                                          if (_avoidingViewUsesAutoLayout) {
                                              [_avoidingView.superview layoutIfNeeded]; // to animate constraint changes
@@ -188,18 +186,17 @@ static float _minimumAnimationDuration;
                               delay:0
                             options:(animationCurve << 16)
                          animations:^{
-            if (_avoidingViewUsesAutoLayout) {
-                [_avoidingView.superview layoutIfNeeded];
-            }
-            else {
-                _avoidingView.transform = CGAffineTransformIdentity;
-            }
-        } completion:^(BOOL finished){
-            [_updatedConstraints removeAllObjects];
-            [_updatedConstraintConstants removeAllObjects];
-        }];
+                             if (_avoidingViewUsesAutoLayout) {
+                                 [_avoidingView.superview layoutIfNeeded];
+                             }
+                             else {
+                                 _avoidingView.transform = CGAffineTransformIdentity;
+                             }
+                         } completion:^(BOOL finished){
+                             [_updatedConstraints removeAllObjects];
+                             [_updatedConstraintConstants removeAllObjects];
+                         }];
     }
-    
     _isKeyboardVisible = CGRectContainsRect(windowFrame, keyboardFrame);
 }
 
@@ -248,21 +245,11 @@ static float _minimumAnimationDuration;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // make sure we only add this once
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
         _targetViews = [[NSMutableArray alloc] init];
         _updatedConstraints = [[NSMutableArray alloc] init];
         _updatedConstraintConstants = [[NSMutableArray alloc] init];
     });
-}
-
-#pragma mark -
-
-+ (void)applicationDidEnterBackground:(NSNotification *)notification
-{
-    // Autolayout is reset when app goes into background, so we need to dismiss the keyboard too
-    UIWindow *window = [UIApplication sharedApplication].windows[0];
-    [window.rootViewController.view endEditing:YES];
 }
 
 @end
