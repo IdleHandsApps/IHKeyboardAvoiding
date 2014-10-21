@@ -1,2 +1,6 @@
 
 *.xcuserstate
+
+*.xccheckout
+
+*.xcbkptlist

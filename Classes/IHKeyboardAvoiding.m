@@ -31,6 +31,7 @@ static float _minimumAnimationDuration;
     // get the keyboard & window frames
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
+    UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     // if split keyboard is being dragged, then skip notification
     if (keyboardFrame.size.height == 0) {
@@ -135,7 +136,7 @@ static float _minimumAnimationDuration;
 
                     [UIView animateWithDuration:animationDuration
                                           delay:delay
-                                        options:UIViewAnimationOptionCurveLinear
+                                        options:(animationCurve << 16)
                                      animations:^{
                                          if (_avoidingViewUsesAutoLayout) {
                                              [_avoidingView.superview layoutIfNeeded]; // to animate constraint changes
@@ -185,7 +186,7 @@ static float _minimumAnimationDuration;
         
         [UIView animateWithDuration:animationDuration + 0.075
                               delay:0
-                            options:[[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] integerValue]
+                            options:(animationCurve << 16)
                          animations:^{
             if (_avoidingViewUsesAutoLayout) {
                 [_avoidingView.superview layoutIfNeeded];
