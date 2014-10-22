@@ -20,8 +20,16 @@ If Autolayout is used then the constraints are animated, otherwise a CGAffine tr
 * iPad undocked keyboard
 * iPad split keyboard
 * landscape & protrait
+* 3rd party keyboards
 * autolayout
 * traditional layout
+
+## How to install
+
+Add this to your CocoaPods Podfile.
+```
+pod 'IHKeyboardAvoiding'
+```
 
 ## How to use:
 
