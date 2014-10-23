@@ -245,11 +245,21 @@ static float _minimumAnimationDuration;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // make sure we only add this once
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
         _targetViews = [[NSMutableArray alloc] init];
         _updatedConstraints = [[NSMutableArray alloc] init];
         _updatedConstraintConstants = [[NSMutableArray alloc] init];
     });
+}
+
+#pragma mark -
+
++ (void)applicationDidEnterBackground:(NSNotification *)notification
+{
+    // Autolayout is reset when app goes into background, so we need to dismiss the keyboard too
+    UIWindow *window = [UIApplication sharedApplication].windows[0];
+    [window.rootViewController.view endEditing:YES];
 }
 
 @end
