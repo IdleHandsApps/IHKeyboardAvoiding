@@ -7,7 +7,7 @@ An elegant solution for keeping any UIView visible when the keyboard is being sh
 
 IHKeyboardAvoiding will translate any UIView up when the keyboard is being shown, then return it when the keyboard is hidden.  
 
-Two views are registered with IHKeyboardAvoiding, the 'avoiding' UIView which is moved, and one or more 'target' UIViews which will be kept visible above the keyboard.  If a target view's frame will be intersected by the keyboard, then the avoiding view will move up, keeping the target view just above the keyboard.
+Two views are registered with IHKeyboardAvoiding, the 'avoiding' UIView which is moved, and one or more 'target' UIViews which will trigger the avoiding.  If a target view's frame will be intersected by the keyboard, then the avoiding view will move up just above the keyboard.
 
 What sets IHKeyboardAvoiding apart from other keyboard avoiding solutions is that it doesn't require placing your content in a UIScrollView.  No scroll view is used. And it isn't restricted to keeping UITextFields visible, instead any UIView can be a target which will be kept visible
 
@@ -45,6 +45,7 @@ To add another target
 Parameters   
 ```(UIView *)avoidingView```   The view to move above, usually the background view  
 ```(UIView *)targetView```      If a targetView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the targetView is above the keyboard.
+Usually you'll set the avoidingView and targetView as the same view. 
 
 Optional methods    
 ```(BOOL)isKeyboardVisible```   A convenience method to check if the keyboard is visible  
@@ -65,12 +66,19 @@ IHKeyboardAvoiding pros:
 
 https://github.com/michaeltyson/TPKeyboardAvoiding (UIScrollView based)  
 https://github.com/kirpichenko/EKKeyboardAvoiding (UIScrollView based)  
-https://github.com/robbdimitrov/RDVKeyboardAvoiding (UIScrollView based)  
+https://github.com/robbdimitrov/RDVKeyboardAvoiding (UIScrollView based) 
+https://github.com/hackiftekhar/IQKeyboardManager (looks interesting) 
 https://github.com/danielamitay/DAKeyboardControl (looks interesting)
 
 ## Author
 
 * Fraser Scott-Morrison (fraserscottmorrison@me.com)
+
+It'd be great to hear about any cool apps that are using IHKeyboardAvoiding
+
+## License 
+
+Distributed under the MIT License
 
 ## Do To:
 
