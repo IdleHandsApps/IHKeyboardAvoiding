@@ -50,7 +50,18 @@ Optional methods
 ```(BOOL)isKeyboardVisible```   A convenience method to check if the keyboard is visible  
 ```(void)setBuffer:(int)buffer``` The avoidingView will move if the keyboard is within [buffer] points of the targetView's frame.  Default buffer is 0  
 ```(void)setPadding:(int)buffer``` The padding to put between the keyboard and target view.  Default padding is 0
-## Similar Keyboard avoiding solutions:
+## IHKeyboardAvoiding vs UIScrollView solutions (Fight, fight!):
+UIScrollView pros:
+* They're quick n easy
+
+IHKeyboardAvoiding pros:
+* You dont have scrollviews littered throughout your app
+* Having multiple scrollviews in your view heirarchy can cause problems
+* When the keyboard hides, scrollviews dont always scroll back to their original position
+* Scrollviews only scroll enough to keep the focused textfield visible
+* IHKeyboardAvoiding provides control over which UIViews are visible when the keyboard appears
+
+## Similar keyboard avoiding solutions:
 
 https://github.com/michaeltyson/TPKeyboardAvoiding (UIScrollView based)  
 https://github.com/kirpichenko/EKKeyboardAvoiding (UIScrollView based)  
