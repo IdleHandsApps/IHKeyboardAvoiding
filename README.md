@@ -7,7 +7,7 @@ An elegant solution for keeping any UIView visible when the keyboard is being sh
 
 IHKeyboardAvoiding will translate any UIView up when the keyboard is being shown, then return it when the keyboard is hidden.  
 
-Two views are registered with IHKeyboardAvoiding, the 'avoiding' UIView which is moved, and one or more 'target' UIViews which will trigger the avoiding.  If a target view's frame will be intersected by the keyboard, then the avoiding view will move up just above the keyboard.
+Two views are registered with IHKeyboardAvoiding, the ```avoidingView``` which is moved, and one or more ```targetViews``` which will trigger the avoiding.  If a ```targetView```'s frame will be intersected by the keyboard, then the ```avoidingView``` will move up just above the keyboard.
 
 What sets IHKeyboardAvoiding apart from other keyboard avoiding solutions is that it doesn't require placing your content in a UIScrollView.  No scroll view is used. And it isn't restricted to keeping UITextFields visible, instead any UIView can be a target which will be kept visible
 
@@ -51,7 +51,7 @@ Optional methods
 ```(BOOL)isKeyboardVisible```   A convenience method to check if the keyboard is visible  
 ```(void)setBuffer:(int)buffer``` The avoidingView will move if the keyboard is within [buffer] points of the targetView's frame.  Default buffer is 0  
 ```(void)setPadding:(int)buffer``` The padding to put between the keyboard and target view.  Default padding is 0
-## IHKeyboardAvoiding vs UIScrollView solutions (Fight, fight!):
+## IHKeyboardAvoiding vs UIScrollView solutions - Fight, fight!:
 UIScrollView pros:
 * They're quick n easy
 
@@ -83,3 +83,8 @@ Distributed under the MIT License
 ## Do To:
 
 * Improve demo project
+
+## Known Issue:
+
+In iOS8 for iPad, when splitting/undocking the keyboard the notifications arent reliably sent by the OS meaning IHKeyboardAvoiding can be left in the wrong state
+A radar has been filed http://openradar.appspot.com/18010127
