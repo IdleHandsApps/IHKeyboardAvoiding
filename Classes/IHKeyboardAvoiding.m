@@ -89,8 +89,11 @@ static float _minimumAnimationDuration;
                 }
                 
                 
-                if (diff < _buffer) {
-                    
+                // Because a frame change from a keyboard with auto-completion to a one without that
+                // (e.g. From Japanese keyboard to English keyboard) leads to positive diff,
+                // we should take into account the case by using the absolute value.
+                if (fabsf(diff) > _buffer) {
+
                     float displacement = ( isPortrait ? -keyboardFrame.size.height : -keyboardFrame.size.width);
                     float delay = 0;
                     
@@ -140,7 +143,13 @@ static float _minimumAnimationDuration;
                                              [_avoidingView.superview layoutIfNeeded]; // to animate constraint changes
                                          }
                                          else {
-                                             _avoidingView.transform = CGAffineTransformMakeTranslation(0, displacement);
+                                             // There is possible case of a frame changing keyboard change
+                                             // (e.g. From Japanese Keyboard with auto-completion
+                                             // to English keyboard without that), so we should not make
+                                             // a translation, but translate the existing transform.
+                                             CGAffineTransform transform = _avoidingView.transform;
+                                             transform = CGAffineTransformTranslate(transform, 0, displacement);
+                                             _avoidingView.transform = transform;
                                          }
                                      }
                                      completion:nil];
