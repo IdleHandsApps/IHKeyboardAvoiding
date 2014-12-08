@@ -31,29 +31,28 @@ static float _minimumAnimationDuration;
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     // keyboardHeightDiff used when user is switching between different keyboards that have different heights
     int keyboardHeightDiff = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height - keyboardFrame.size.height;
-    CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
+    
+    CGRect screenFrame = [UIScreen mainScreen].bounds;
     UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     // if split keyboard is being dragged, then skip notification
     if (keyboardFrame.size.height == 0) {
         CGRect keyboardBeginFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
         
-        if (isPortrait) {
-            if (keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == windowFrame.size.height)
-                return;
-        } else {
-            if (keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == windowFrame.size.width)
-                return;
+        if (isPortrait && keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == screenFrame.size.height) {
+            return;
+        } else if (!isPortrait && keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == screenFrame.size.width) {
+            return;
         }
     }
     
     // calculate if we are to move up the avoiding view
     if (isPortrait) {
-        if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == windowFrame.size.height)) {
+        if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenFrame.size.height)) {
             isKeyBoardShowing = YES;
         }
     } else {
-        if (keyboardFrame.origin.x == 0 || (keyboardFrame.origin.x + keyboardFrame.size.width == windowFrame.size.width)) {
+        if (keyboardFrame.origin.x == 0 || (keyboardFrame.origin.x + keyboardFrame.size.width == screenFrame.size.width)) {
             isKeyBoardShowing = YES;
         }
     }
@@ -78,8 +77,8 @@ static float _minimumAnimationDuration;
                             diff -= (originInWindow.y + targetView.frame.size.height);
                             break;
                         case UIInterfaceOrientationPortraitUpsideDown:
-                            diff = windowFrame.size.height - keyboardFrame.size.height;
-                            originInWindow.y = windowFrame.size.height - originInWindow.y;
+                            diff = screenFrame.size.height - keyboardFrame.size.height;
+                            originInWindow.y = screenFrame.size.height - originInWindow.y;
                             diff -= (originInWindow.y + targetView.frame.size.height);
                             break;
                         case UIInterfaceOrientationLandscapeLeft:
@@ -87,8 +86,8 @@ static float _minimumAnimationDuration;
                             diff -= (originInWindow.x + targetView.frame.size.height);
                             break;
                         case UIInterfaceOrientationLandscapeRight:
-                            diff = windowFrame.size.width - keyboardFrame.size.width;
-                            originInWindow.x = windowFrame.size.width - originInWindow.x;
+                            diff = screenFrame.size.width - keyboardFrame.size.width;
+                            originInWindow.x = screenFrame.size.width - originInWindow.x;
                             diff -= (originInWindow.x + targetView.frame.size.height);
                         default:
                             break;
@@ -203,7 +202,7 @@ static float _minimumAnimationDuration;
                              [_updatedConstraintConstants removeAllObjects];
                          }];
     }
-    _isKeyboardVisible = CGRectContainsRect(windowFrame, keyboardFrame);
+    _isKeyboardVisible = CGRectContainsRect(screenFrame, keyboardFrame);
 }
 
 + (void)setAvoidingView:(UIView *)avoidingView withTarget:(UIView *)targetView;
