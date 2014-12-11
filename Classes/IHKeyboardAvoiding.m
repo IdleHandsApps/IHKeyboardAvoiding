@@ -139,7 +139,9 @@ static float _minimumAnimationDuration;
                                              [_avoidingView.superview layoutIfNeeded]; // to animate constraint changes
                                          }
                                          else {
-                                             _avoidingView.transform = CGAffineTransformMakeTranslation(0, displacement);
+                                             CGAffineTransform transform = _avoidingView.transform;
+                                             transform = CGAffineTransformTranslate(transform, 0, displacement);
+                                             _avoidingView.transform = transform;
                                          }
                                      }
                                      completion:nil];
