@@ -8,6 +8,10 @@
 
 #import "IHKeyboardAvoiding.h"
 
+#ifndef SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @implementation IHKeyboardAvoiding
 
 static NSMutableArray *_targetViews;
@@ -29,32 +33,27 @@ static float _minimumAnimationDuration;
     
     // get the keyboard & window frames
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardFrame = [self getOrientedRect:keyboardFrame];
     // keyboardHeightDiff used when user is switching between different keyboards that have different heights
-    int keyboardHeightDiff = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height - keyboardFrame.size.height;
+    int keyboardHeightDiff = [self getOrientedRect:[[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue]].size.height - keyboardFrame.size.height;
     
-    CGRect screenFrame = [UIScreen mainScreen].bounds;
+    CGSize screenSize = [self screenSize];
     UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     // if split keyboard is being dragged, then skip notification
     if (keyboardFrame.size.height == 0) {
         CGRect keyboardBeginFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
         
-        if (isPortrait && keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == screenFrame.size.height) {
+        if (isPortrait && keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == screenSize.height) {
             return;
-        } else if (!isPortrait && keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == screenFrame.size.width) {
+        } else if (!isPortrait && keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == screenSize.width) {
             return;
         }
     }
     
     // calculate if we are to move up the avoiding view
-    if (isPortrait) {
-        if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenFrame.size.height)) {
-            isKeyBoardShowing = YES;
-        }
-    } else {
-        if (keyboardFrame.origin.x == 0 || (keyboardFrame.origin.x + keyboardFrame.size.width == screenFrame.size.width)) {
-            isKeyBoardShowing = YES;
-        }
+    if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenSize.height)) {
+        isKeyBoardShowing = YES;
     }
     
     // get animation duration
@@ -70,25 +69,20 @@ static float _minimumAnimationDuration;
                     diff = keyboardHeightDiff;
                 }
                 else {
-                    CGPoint originInWindow = [targetView.superview convertPoint:targetView.frame.origin toView:nil];
+                    UIView *view = [[UIView alloc] initWithFrame:[self getOrientedRect:targetView.superview.frame]];
+                    CGPoint originInWindow = [view convertPoint:targetView.frame.origin toView:nil];
+                    
                     switch ([[UIApplication sharedApplication] statusBarOrientation]) {
                         case UIInterfaceOrientationPortrait:
+                        case UIInterfaceOrientationLandscapeLeft:
                             diff = keyboardFrame.origin.y;
                             diff -= (originInWindow.y + targetView.frame.size.height);
                             break;
                         case UIInterfaceOrientationPortraitUpsideDown:
-                            diff = screenFrame.size.height - keyboardFrame.size.height;
-                            originInWindow.y = screenFrame.size.height - originInWindow.y;
+                        case UIInterfaceOrientationLandscapeRight:
+                            diff = screenSize.height - keyboardFrame.size.height;
                             diff -= (originInWindow.y + targetView.frame.size.height);
                             break;
-                        case UIInterfaceOrientationLandscapeLeft:
-                            diff = keyboardFrame.origin.x;
-                            diff -= (originInWindow.x + targetView.frame.size.height);
-                            break;
-                        case UIInterfaceOrientationLandscapeRight:
-                            diff = screenFrame.size.width - keyboardFrame.size.width;
-                            originInWindow.x = screenFrame.size.width - originInWindow.x;
-                            diff -= (originInWindow.x + targetView.frame.size.height);
                         default:
                             break;
                     }
@@ -202,7 +196,7 @@ static float _minimumAnimationDuration;
                              [_updatedConstraintConstants removeAllObjects];
                          }];
     }
-    _isKeyboardVisible = CGRectContainsRect(screenFrame, keyboardFrame);
+    _isKeyboardVisible = CGRectContainsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
 }
 
 + (void)setAvoidingView:(UIView *)avoidingView withTarget:(UIView *)targetView;
@@ -256,6 +250,26 @@ static float _minimumAnimationDuration;
         _updatedConstraints = [[NSMutableArray alloc] init];
         _updatedConstraintConstants = [[NSMutableArray alloc] init];
     });
+}
+
+#pragma mark - Helpers
+
++ (CGSize)screenSize {
+    return [self getOrientedRect:[UIScreen mainScreen].bounds].size;
+}
+
++ (CGRect)getOrientedRect:(CGRect)originalRect {
+    CGRect orientedRect = originalRect;
+    if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
+        if ([self isLandscape]) {
+            orientedRect = CGRectMake(originalRect.origin.y, originalRect.origin.x, originalRect.size.height, originalRect.size.width);
+        }
+    }
+    return orientedRect;
+}
+
++ (BOOL)isLandscape {
+    return UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]);
 }
 
 #pragma mark -
