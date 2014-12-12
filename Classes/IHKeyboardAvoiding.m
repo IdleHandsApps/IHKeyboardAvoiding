@@ -9,12 +9,12 @@
 #import "IHKeyboardAvoiding.h"
 
 #ifndef SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
 @implementation IHKeyboardAvoiding
 
-static NSMutableArray *_targetViews;
+static NSMutableArray *_triggerViews;
 static UIView *_avoidingView;
 static NSMutableArray *_updatedConstraints;
 static NSMutableArray *_updatedConstraintConstants;
@@ -23,6 +23,7 @@ static BOOL _isKeyboardVisible;
 static BOOL _avoidingViewUsesAutoLayout;
 static int _buffer = 0;
 static int _padding = 0;
+static int _paddingCurrent = _padding;
 static KeyboardAvoidingMode _keyboardAvoidingMode = KeyboardAvoidingModeMinimum;
 static float _minimumAnimationDuration;
 
@@ -60,28 +61,28 @@ static float _minimumAnimationDuration;
     float animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     
     if (isKeyBoardShowing) {
-        for (int i = 0; i < _targetViews.count; i++) {
-            UIView *targetView = [_targetViews objectAtIndex:i];
+        for (int i = 0; i < _triggerViews.count; i++) {
+            UIView *triggerView = [_triggerViews objectAtIndex:i];
             //showing and docked
-            if (targetView) {
+            if (triggerView) {
                 float diff = 0;
                 if (keyboardHeightDiff > 0) {
                     diff = keyboardHeightDiff;
                 }
                 else {
-                    UIView *view = [[UIView alloc] initWithFrame:[self getOrientedRect:targetView.superview.frame]];
-                    CGPoint originInWindow = [view convertPoint:targetView.frame.origin toView:nil];
+                    UIView *view = [[UIView alloc] initWithFrame:[self getOrientedRect:triggerView.superview.frame]];
+                    CGPoint originInWindow = [view convertPoint:triggerView.frame.origin toView:nil];
                     
                     switch ([[UIApplication sharedApplication] statusBarOrientation]) {
                         case UIInterfaceOrientationPortrait:
                         case UIInterfaceOrientationLandscapeLeft:
                             diff = keyboardFrame.origin.y;
-                            diff -= (originInWindow.y + targetView.frame.size.height);
+                            diff -= (originInWindow.y + triggerView.frame.size.height);
                             break;
                         case UIInterfaceOrientationPortraitUpsideDown:
                         case UIInterfaceOrientationLandscapeRight:
                             diff = screenSize.height - keyboardFrame.size.height;
-                            diff -= (originInWindow.y + targetView.frame.size.height);
+                            diff -= (originInWindow.y + triggerView.frame.size.height);
                             break;
                         default:
                             break;
@@ -103,7 +104,7 @@ static float _minimumAnimationDuration;
                         {
                             float minimumDisplacement = fmaxf(displacement, diff);
                             _minimumAnimationDuration = animationDuration * (minimumDisplacement / displacement);
-                            displacement = minimumDisplacement - _padding;
+                            displacement = minimumDisplacement - _paddingCurrent;
                             delay = (animationDuration - _minimumAnimationDuration);
                             animationDuration = _minimumAnimationDuration;
                             break;
@@ -112,7 +113,7 @@ static float _minimumAnimationDuration;
                         default:
                         {
                             float minimumDisplacement = fmaxf(displacement, diff);
-                            displacement = minimumDisplacement - (keyboardHeightDiff <= 0 ? _padding : 0);
+                            displacement = minimumDisplacement - (keyboardHeightDiff <= 0 ? _paddingCurrent : 0);
                             break;
                         }
                     }
@@ -156,20 +157,13 @@ static float _minimumAnimationDuration;
         
         switch (_keyboardAvoidingMode) {
             case KeyboardAvoidingModeMaximum:
-            {
-                
                 break;
-            }
             case KeyboardAvoidingModeMinimumDelayed:
-            {
                 animationDuration = _minimumAnimationDuration;
                 break;
-            }
             case KeyboardAvoidingModeMinimum:
             default:
-            {
                 break;
-            }
         }
         
         // restore state
@@ -201,28 +195,33 @@ static float _minimumAnimationDuration;
     _isKeyboardVisible = CGRectContainsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
 }
 
-+ (void)setAvoidingView:(UIView *)avoidingView withTarget:(UIView *)targetView;
++ (void)setAvoidingView:(UIView *)avoidingView {
+    [self setAvoidingView:avoidingView withTrigger:avoidingView];
+}
+
++ (void)setAvoidingView:(UIView *)avoidingView withTrigger:(UIView *)triggerView;
 {
     [self init];
     
-    [_targetViews removeAllObjects];
-    [_targetViews addObject:targetView];
+    [_triggerViews removeAllObjects];
+    [_triggerViews addObject:triggerView];
     _avoidingView = avoidingView;
     _avoidingViewUsesAutoLayout = _avoidingView.superview.constraints.count > 0;
+    _paddingCurrent = _padding;
 }
 
-+ (void)addTarget:(UIView *)targetView;
++ (void)addTrigger:(UIView *)triggerView;
 {
-    [_targetViews addObject:targetView];
+    [_triggerViews addObject:triggerView];
 }
 
-+ (void)removeTarget:(UIView *)targetView;
++ (void)removeTrigger:(UIView *)triggerView;
 {
-    [_targetViews removeObject:targetView];
+    [_triggerViews removeObject:triggerView];
 }
 
 + (void)removeAll {
-    [_targetViews removeAllObjects];
+    [_triggerViews removeAllObjects];
     _avoidingView = nil;
 }
 
@@ -235,7 +234,14 @@ static float _minimumAnimationDuration;
 }
 
 + (void)setPadding:(int)padding {
+    if (_paddingCurrent == _padding) {
+        _paddingCurrent = padding; // if paddingCurrent has been set explicitly, dont reset it
+    }
     _padding = padding;
+}
+
++ (void)setPaddingForCurrentAvoidingView:(int)padding {
+    _paddingCurrent = padding;
 }
 
 + (void)setKeyboardAvoidingMode:(KeyboardAvoidingMode)keyboardAvoidingMode {
@@ -248,7 +254,7 @@ static float _minimumAnimationDuration;
         // make sure we only add this once
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
-        _targetViews = [[NSMutableArray alloc] init];
+        _triggerViews = [[NSMutableArray alloc] init];
         _updatedConstraints = [[NSMutableArray alloc] init];
         _updatedConstraintConstants = [[NSMutableArray alloc] init];
     });
@@ -281,6 +287,18 @@ static float _minimumAnimationDuration;
     // Autolayout is reset when app goes into background, so we need to dismiss the keyboard too
     UIWindow *window = [UIApplication sharedApplication].windows[0];
     [window.rootViewController.view endEditing:YES];
+}
+
+#pragma mark - deprecated
+
++ (void)setAvoidingView:(UIView *)avoidingView withTarget:(UIView *)targetView {
+    [self setAvoidingView:avoidingView withTrigger:targetView];
+}
++ (void)addTarget:(UIView *)targetView {
+    [self addTrigger:targetView];
+}
++ (void)removeTarget:(UIView *)targetView {
+    [self removeTrigger:targetView];
 }
 
 @end
