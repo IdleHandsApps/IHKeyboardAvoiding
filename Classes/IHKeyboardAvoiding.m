@@ -23,7 +23,7 @@ static BOOL _isKeyboardVisible;
 static BOOL _avoidingViewUsesAutoLayout;
 static int _buffer = 0;
 static int _padding = 0;
-static int _paddingCurrent = _padding;
+static int _paddingCurrent = 0;
 static KeyboardAvoidingMode _keyboardAvoidingMode = KeyboardAvoidingModeMinimum;
 static float _minimumAnimationDuration;
 
@@ -196,10 +196,10 @@ static float _minimumAnimationDuration;
 }
 
 + (void)setAvoidingView:(UIView *)avoidingView {
-    [self setAvoidingView:avoidingView withTrigger:avoidingView];
+    [self setAvoidingView:avoidingView withTriggerView:avoidingView];
 }
 
-+ (void)setAvoidingView:(UIView *)avoidingView withTrigger:(UIView *)triggerView;
++ (void)setAvoidingView:(UIView *)avoidingView withTriggerView:(UIView *)triggerView;
 {
     [self init];
     
@@ -210,12 +210,12 @@ static float _minimumAnimationDuration;
     _paddingCurrent = _padding;
 }
 
-+ (void)addTrigger:(UIView *)triggerView;
++ (void)addTriggerView:(UIView *)triggerView;
 {
     [_triggerViews addObject:triggerView];
 }
 
-+ (void)removeTrigger:(UIView *)triggerView;
++ (void)removeTriggerView:(UIView *)triggerView;
 {
     [_triggerViews removeObject:triggerView];
 }
@@ -292,13 +292,14 @@ static float _minimumAnimationDuration;
 #pragma mark - deprecated
 
 + (void)setAvoidingView:(UIView *)avoidingView withTarget:(UIView *)targetView {
-    [self setAvoidingView:avoidingView withTrigger:targetView];
+    [self setAvoidingView:avoidingView withTriggerView:targetView];
 }
 + (void)addTarget:(UIView *)targetView {
-    [self addTrigger:targetView];
+    [self addTriggerView:targetView];
 }
 + (void)removeTarget:(UIView *)targetView {
-    [self removeTrigger:targetView];
+    [self removeTriggerView:targetView];
 }
+
 
 @end

@@ -21,11 +21,11 @@ typedef KeyboardAvoidingMode;
 + (void)setAvoidingView:(UIView *)avoidingView;
 
 // if you want the triggering view to be different to the avoiding view, use this
-+ (void)setAvoidingView:(UIView *)avoidingView withTrigger:(UIView *)triggerView;
++ (void)setAvoidingView:(UIView *)avoidingView withTriggerView:(UIView *)triggerView;
 // if you want additional trigger views, use this
-+ (void)addTrigger:(UIView *)triggerView;
++ (void)addTriggerView:(UIView *)triggerView;
 // removes a trigger
-+ (void)removeTrigger:(UIView *)triggerView;
++ (void)removeTriggerView:(UIView *)triggerView;
 
 // sets avoiding view to nil, and removes any trigger views
 + (void)removeAll;
