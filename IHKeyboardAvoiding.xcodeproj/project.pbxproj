@@ -23,6 +23,7 @@
 		1AFC71BC192382BB003B85FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC71B0192382BB003B85FB /* main.m */; };
 		4C0593D91932D1D800BFD714 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0593D81932D1D800BFD714 /* IHKeyboardAvoiding.m */; };
 		4C58B40C19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4C58B40B19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec */; };
+		4CD9973A1A3E3EA500C2EDF6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4CD997391A3E3EA500C2EDF6 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		4C0593DA1932D34900BFD714 /* IHKeyboardAvoiding-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IHKeyboardAvoiding-Info.plist"; sourceTree = "<group>"; };
 		4C0593DB1932D34900BFD714 /* IHKeyboardAvoiding-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IHKeyboardAvoiding-Prefix.pch"; sourceTree = "<group>"; };
 		4C58B40B19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IHKeyboardAvoiding.podspec; sourceTree = SOURCE_ROOT; };
+		4CD997391A3E3EA500C2EDF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				1AFC71A8192382BB003B85FB /* InfoPlist.strings */,
 				4C0593DA1932D34900BFD714 /* IHKeyboardAvoiding-Info.plist */,
 				4C0593DB1932D34900BFD714 /* IHKeyboardAvoiding-Prefix.pch */,
+				4CD997391A3E3EA500C2EDF6 /* README.md */,
 				1AFC71B0192382BB003B85FB /* main.m */,
 			);
 			name = "Supporting Files";
@@ -208,6 +211,7 @@
 			files = (
 				1AFC71B9192382BB003B85FB /* IHAppDelegate.m in Sources */,
 				1AFC71BC192382BB003B85FB /* main.m in Sources */,
+				4CD9973A1A3E3EA500C2EDF6 /* README.md in Sources */,
 				4C0593D91932D1D800BFD714 /* IHKeyboardAvoiding.m in Sources */,
 				1AFC71BB192382BB003B85FB /* IHViewController.m in Sources */,
 			);

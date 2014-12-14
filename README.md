@@ -7,9 +7,9 @@ An elegant solution for keeping any UIView visible when the keyboard is being sh
 
 IHKeyboardAvoiding will translate any UIView up when the keyboard is being shown, then return it when the keyboard is hidden.  
 
-Two views are registered with IHKeyboardAvoiding, the ```avoidingView``` which is moved, and one or more ```targetViews``` which will trigger the avoiding.  If a ```targetView```'s frame will be intersected by the keyboard, then the ```avoidingView``` will move up just above the keyboard.
+Register an ```avoidingView```(UIView) with IHKeyboardAvoiding; when the keyboard is shown, if  the ```avoidingViews``` frame will be intersected by the keyboard, then it will move up just above the keyboard. When the keyboard is dismissed, the ```avoidingView``` is returned to its original position.
 
-What sets IHKeyboardAvoiding apart from other keyboard avoiding solutions is that it doesn't require placing your content in a UIScrollView.  No scroll view is used. And it isn't restricted to keeping UITextFields visible, instead any UIView can be a target which will be kept visible
+What sets IHKeyboardAvoiding apart from other keyboard avoiding solutions is that it doesn't require placing your content in a UIScrollView.  No scroll view is used. And it isn't restricted to keeping UITextFields visible, with IHKeyboardAvoiding any UIView can avoid the keyboard
 
 If Autolayout is used then the constraints are animated, otherwise a CGAffine translation is done.
 
@@ -21,8 +21,8 @@ If Autolayout is used then the constraints are animated, otherwise a CGAffine tr
 * iPad split keyboard
 * landscape & protrait
 * 3rd party keyboards
-* autolayout
-* traditional layout
+* Auto Layout
+* AutoResizingMask (Springs & Struts)
 
 ## How to install
 
@@ -35,22 +35,17 @@ pod 'IHKeyboardAvoiding'
 
 To set the avoiding view
 ```objective-c
-[IHKeyboardAvoiding setAvoidingView:(UIView *)avoidingView with:(UIView *)targetView];
-```
-To add another target
-```objective-c
-[IHKeyboardAvoiding addTarget:(UIView *)targetView];
+[IHKeyboardAvoiding setAvoidingView:(UIView *)avoidingView];
 ```
 
-Parameters   
-```(UIView *)avoidingView```   The view to move above, usually the background view  
-```(UIView *)targetView```      If a targetView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the targetView is above the keyboard.
-Usually you'll set the avoidingView and targetView as the same view. 
+Put it in ```(void)viewDidLoad``` or ```(void)viewDidAppear:(BOOL)animated``` depending on your usage - if you're unsure put it in ```(void)viewDidAppear:(BOOL)animated```
+If you need to get set the avoiding view dynamically, consider putting it in ```(BOOL)textViewShouldBeginEditing:(UITextView *)textView```
 
 Optional methods    
-```(BOOL)isKeyboardVisible```   A convenience method to check if the keyboard is visible  
-```(void)setBuffer:(int)buffer``` The avoidingView will move if the keyboard is within [buffer] points of the targetView's frame.  Default buffer is 0  
-```(void)setPadding:(int)buffer``` The padding to put between the keyboard and target view.  Default padding is 0
+```(void)setAvoidingView:(UIView *)avoidingView withTriggerView:(UIView *)triggerView``` Use this to set an avoidingView but have a different view that triggers the avoiding. If a triggerView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the triggerView is above the keyboard
+```(void)setBuffer:(int)buffer``` The avoidingView will move if the keyboard is within [buffer] points of the triggerView's frame.  Default buffer is 0  
+```(void)setPaddingForCurrentAvoidingView:(int)padding``` The padding to put between the keyboard and triggerView.  Default padding is 0
+
 ## IHKeyboardAvoiding vs UIScrollView solutions - Fight, fight!:
 UIScrollView pros:
 * They're quick n easy
@@ -69,6 +64,10 @@ https://github.com/kirpichenko/EKKeyboardAvoiding (UIScrollView based)
 https://github.com/robbdimitrov/RDVKeyboardAvoiding (UIScrollView based) 
 https://github.com/hackiftekhar/IQKeyboardManager (looks interesting) 
 https://github.com/danielamitay/DAKeyboardControl (looks interesting)
+
+## Buy now and get this free gift :)
+
+Tap to dismiss the keyboard with IHKeyboardDismissing https://github.com/IdleHandsApps/IHKeyboardDismissing
 
 ## Author
 
