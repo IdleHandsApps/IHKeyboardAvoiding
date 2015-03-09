@@ -53,7 +53,7 @@ static float _minimumAnimationDuration;
     }
     
     // calculate if we are to move up the avoiding view
-    if (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenSize.height)) {
+    if (!CGRectIsEmpty(keyboardFrame) && (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenSize.height))) {
         isKeyBoardShowing = YES;
     }
     
