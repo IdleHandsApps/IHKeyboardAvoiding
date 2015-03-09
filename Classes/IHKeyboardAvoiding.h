@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 
 enum KeyboardAvoidingMode {
     KeyboardAvoidingModeMaximum = 0, // Avoiding starts with keyboard and moves up same distance as keyboard
