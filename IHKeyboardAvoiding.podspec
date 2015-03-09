@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'IHKeyboardAvoiding'
-  s.version          = '2.0'
+  s.version          = '2.1'
   s.summary          = 'IHKeyboardAvoiding is an elegant solution for keeping any UIView visible when the keyboard is being shown'
   s.homepage         = 'https://github.com/IdleHandsApps/IHKeyboardAvoiding/'
   s.description      = <<-DESC
