@@ -49,9 +49,11 @@ Optional methods
 ```(void)setBuffer:(int)buffer``` The avoidingView will move if the keyboard is within [buffer] points of the triggerView's frame.  Default buffer is 0  
 ```(void)setPaddingForCurrentAvoidingView:(int)padding``` The padding to put between the keyboard and triggerView.  Default padding is 0
 
-## Buy now and get this free gift :)
+## Buy now and get these free gifts :)
 
 Tap to dismiss the keyboard with IHKeyboardDismissing https://github.com/IdleHandsApps/IHKeyboardDismissing
+
+A drop in nav controller with cool parallax transitions https://github.com/IdleHandsApps/IHParallaxNavigationController
 
 ## IHKeyboardAvoiding vs UIScrollView solutions - Fight, fight!
 UIScrollView pros:
