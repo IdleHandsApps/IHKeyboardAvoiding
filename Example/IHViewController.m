@@ -22,7 +22,7 @@
     
     self.avoidingView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diamond_upholstery"]];
     
-    [IHKeyboardAvoiding setAvoidingView:self.avoidingView withTarget:self.targetView];
+    [IHKeyboardAvoiding setAvoidingView:self.avoidingView withTriggerView:self.targetView];
     
 }
 
