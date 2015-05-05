@@ -12,6 +12,10 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+#ifndef IS_PHONE
+#define IS_PHONE (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+#endif
+
 @implementation IHKeyboardAvoiding
 
 static NSMutableArray *_triggerViews;
@@ -36,18 +40,20 @@ static float _minimumAnimationDuration;
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     keyboardFrame = [self getOrientedRect:keyboardFrame];
     // keyboardHeightDiff used when user is switching between different keyboards that have different heights
-    int keyboardHeightDiff = [self getOrientedRect:[[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue]].size.height - keyboardFrame.size.height;
+    CGRect keyboardFrameBegin = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    int keyboardHeightDiff = 0;
+    if (keyboardFrameBegin.size.height > 0) {
+        keyboardHeightDiff = [self getOrientedRect:keyboardFrameBegin].size.height - keyboardFrame.size.height;
+    }
     
     CGSize screenSize = [self screenSize];
     UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
     // if split keyboard is being dragged, then skip notification
-    if (keyboardFrame.size.height == 0) {
-        CGRect keyboardBeginFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-        
-        if (isPortrait && keyboardBeginFrame.origin.y + keyboardBeginFrame.size.height == screenSize.height) {
+    if (keyboardFrame.size.height == 0 && !IS_PHONE) {
+        if (isPortrait && keyboardFrameBegin.origin.y + keyboardFrameBegin.size.height == screenSize.height) {
             return;
-        } else if (!isPortrait && keyboardBeginFrame.origin.x + keyboardBeginFrame.size.width == screenSize.width) {
+        } else if (!isPortrait && keyboardFrameBegin.origin.x + keyboardFrameBegin.size.width == screenSize.width) {
             return;
         }
     }
@@ -59,6 +65,10 @@ static float _minimumAnimationDuration;
     
     // get animation duration
     float animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    if (animationDuration == 0){
+        // custom keyboards often dont animate, its too clanky so have to manually set this
+        animationDuration = 0.1;
+    }
     
     if (isKeyBoardShowing) {
         for (int i = 0; i < _triggerViews.count; i++) {
@@ -67,6 +77,7 @@ static float _minimumAnimationDuration;
             if (triggerView) {
                 float diff = 0;
                 if (keyboardHeightDiff != 0) {
+                    // if keyboard height is changing and avoidingView is currently moved
                     diff = keyboardHeightDiff;
                 }
                 else {
@@ -77,12 +88,12 @@ static float _minimumAnimationDuration;
                         case UIInterfaceOrientationPortrait:
                         case UIInterfaceOrientationLandscapeLeft:
                             diff = keyboardFrame.origin.y;
-                            diff -= (originInWindow.y + triggerView.frame.size.height);
+                            diff = diff - (originInWindow.y + triggerView.frame.size.height);
                             break;
                         case UIInterfaceOrientationPortraitUpsideDown:
                         case UIInterfaceOrientationLandscapeRight:
                             diff = screenSize.height - keyboardFrame.size.height;
-                            diff -= (originInWindow.y + triggerView.frame.size.height);
+                            diff = diff - (originInWindow.y + triggerView.frame.size.height);
                             break;
                         default:
                             break;
