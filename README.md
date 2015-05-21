@@ -1,3 +1,4 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 An elegant solution for keeping any UIView visible when the keyboard is being shown
 
