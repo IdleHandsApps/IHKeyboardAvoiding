@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>KeyboardStateScroller.xcscheme</key>
+		<key>IHKeyboardAvoiding.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -13,6 +13,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1A759CE717213F3900864F0A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF288CD71B0E3B070042D01B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

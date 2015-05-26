@@ -24,6 +24,7 @@
 		4C0593D91932D1D800BFD714 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0593D81932D1D800BFD714 /* IHKeyboardAvoiding.m */; };
 		4C2ECF1F1AF8509E00B1A4A2 /* IHKeyboardDismissing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ECF1E1AF8509E00B1A4A2 /* IHKeyboardDismissing.m */; };
 		4C58B40C19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4C58B40B19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec */; };
+		4CC2ADF71B15315B00E2060A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CC2ADF61B15315B00E2060A /* Images.xcassets */; };
 		4CD9973A1A3E3EA500C2EDF6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4CD997391A3E3EA500C2EDF6 /* README.md */; };
 		BF288CF11B0E3B2F0042D01B /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0593D81932D1D800BFD714 /* IHKeyboardAvoiding.m */; };
 		BF288CF21B0E3B340042D01B /* IHKeyboardAvoiding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C0593D71932D1D800BFD714 /* IHKeyboardAvoiding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A759CE817213F3900864F0A /* KeyboardStateScroller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardStateScroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A759CE817213F3900864F0A /* IHKeyboardAvoiding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IHKeyboardAvoiding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A759CEB17213F3900864F0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1A759CED17213F3900864F0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1A759CEF17213F3900864F0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,6 +58,7 @@
 		4C2ECF1D1AF8509E00B1A4A2 /* IHKeyboardDismissing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHKeyboardDismissing.h; sourceTree = "<group>"; };
 		4C2ECF1E1AF8509E00B1A4A2 /* IHKeyboardDismissing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardDismissing.m; sourceTree = "<group>"; };
 		4C58B40B19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IHKeyboardAvoiding.podspec; sourceTree = SOURCE_ROOT; };
+		4CC2ADF61B15315B00E2060A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		4CD997391A3E3EA500C2EDF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IHKeyboardAvoiding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF288CDB1B0E3B070042D01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../IHKeyboardAvoiding/Info.plist; sourceTree = "<group>"; };
@@ -100,7 +102,7 @@
 		1A759CE917213F3900864F0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A759CE817213F3900864F0A /* KeyboardStateScroller.app */,
+				1A759CE817213F3900864F0A /* IHKeyboardAvoiding.app */,
 				BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding.framework */,
 			);
 			name = Products;
@@ -119,6 +121,7 @@
 		1AFC719519238202003B85FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CC2ADF61B15315B00E2060A /* Images.xcassets */,
 				4C58B40B19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec */,
 				1AFC71A8192382BB003B85FB /* InfoPlist.strings */,
 				4C0593DA1932D34900BFD714 /* IHKeyboardAvoiding-Info.plist */,
@@ -176,9 +179,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1A759CE717213F3900864F0A /* KeyboardStateScroller */ = {
+		1A759CE717213F3900864F0A /* IHKeyboardAvoiding */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A759D0E17213F3900864F0A /* Build configuration list for PBXNativeTarget "KeyboardStateScroller" */;
+			buildConfigurationList = 1A759D0E17213F3900864F0A /* Build configuration list for PBXNativeTarget "IHKeyboardAvoiding" */;
 			buildPhases = (
 				1A759CE417213F3900864F0A /* Sources */,
 				1A759CE517213F3900864F0A /* Frameworks */,
@@ -188,14 +191,14 @@
 			);
 			dependencies = (
 			);
-			name = KeyboardStateScroller;
+			name = IHKeyboardAvoiding;
 			productName = KeyboardStateScroller;
-			productReference = 1A759CE817213F3900864F0A /* KeyboardStateScroller.app */;
+			productReference = 1A759CE817213F3900864F0A /* IHKeyboardAvoiding.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BF288CD71B0E3B070042D01B /* IHKeyboardAvoiding */ = {
+		BF288CD71B0E3B070042D01B /* IHKeyboardAvoiding Carthage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF288CEF1B0E3B070042D01B /* Build configuration list for PBXNativeTarget "IHKeyboardAvoiding" */;
+			buildConfigurationList = BF288CEF1B0E3B070042D01B /* Build configuration list for PBXNativeTarget "IHKeyboardAvoiding Carthage" */;
 			buildPhases = (
 				BF288CD31B0E3B070042D01B /* Sources */,
 				BF288CD41B0E3B070042D01B /* Frameworks */,
@@ -206,7 +209,7 @@
 			);
 			dependencies = (
 			);
-			name = IHKeyboardAvoiding;
+			name = "IHKeyboardAvoiding Carthage";
 			productName = IHKeyboardAvoiding;
 			productReference = BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding.framework */;
 			productType = "com.apple.product-type.framework";
@@ -238,8 +241,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A759CE717213F3900864F0A /* KeyboardStateScroller */,
-				BF288CD71B0E3B070042D01B /* IHKeyboardAvoiding */,
+				1A759CE717213F3900864F0A /* IHKeyboardAvoiding */,
+				BF288CD71B0E3B070042D01B /* IHKeyboardAvoiding Carthage */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AFC71B7192382BB003B85FB /* IHViewController_iPhone.xib in Resources */,
+				4CC2ADF71B15315B00E2060A /* Images.xcassets in Resources */,
 				1AFC71B8192382BB003B85FB /* InfoPlist.strings in Resources */,
 				1AFC71B3192382BB003B85FB /* Default@2x.png in Resources */,
 				1AFC71B1192382BB003B85FB /* Default-568h@2x.png in Resources */,
@@ -383,6 +387,7 @@
 		1A759D0F17213F3900864F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/IHKeyboardAvoiding-Prefix.pch";
 				INFOPLIST_FILE = "Example/IHKeyboardAvoiding-Info.plist";
@@ -394,6 +399,7 @@
 		1A759D1017213F3900864F0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/IHKeyboardAvoiding-Prefix.pch";
 				INFOPLIST_FILE = "Example/IHKeyboardAvoiding-Info.plist";
@@ -486,7 +492,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A759D0E17213F3900864F0A /* Build configuration list for PBXNativeTarget "KeyboardStateScroller" */ = {
+		1A759D0E17213F3900864F0A /* Build configuration list for PBXNativeTarget "IHKeyboardAvoiding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A759D0F17213F3900864F0A /* Debug */,
@@ -495,13 +501,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF288CEF1B0E3B070042D01B /* Build configuration list for PBXNativeTarget "IHKeyboardAvoiding" */ = {
+		BF288CEF1B0E3B070042D01B /* Build configuration list for PBXNativeTarget "IHKeyboardAvoiding Carthage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BF288CEB1B0E3B070042D01B /* Debug */,
 				BF288CEC1B0E3B070042D01B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
