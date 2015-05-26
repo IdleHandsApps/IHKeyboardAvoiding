@@ -30,6 +30,7 @@ static int _padding = 0;
 static int _paddingCurrent = 0;
 static KeyboardAvoidingMode _keyboardAvoidingMode = KeyboardAvoidingModeMinimum;
 static float _minimumAnimationDuration;
+static NSNotification *_lastNotification;
 
 + (void)didChange:(NSNotification *)notification
 {
@@ -61,6 +62,7 @@ static float _minimumAnimationDuration;
     // calculate if we are to move up the avoiding view
     if (!CGRectIsEmpty(keyboardFrame) && (keyboardFrame.origin.y == 0 || (keyboardFrame.origin.y + keyboardFrame.size.height == screenSize.height))) {
         isKeyBoardShowing = YES;
+        _lastNotification = notification;
     }
     
     // get animation duration
@@ -139,8 +141,16 @@ static float _minimumAnimationDuration;
                                 constraint.constant -= displacement;
                                 break;
                             }
+                            else if (constraint.firstItem == _avoidingView && (constraint.firstAttribute == NSLayoutAttributeCenterY || constraint.firstAttribute == NSLayoutAttributeTop || constraint.firstAttribute == NSLayoutAttributeBottom)) {
+                                if (![_updatedConstraints containsObject:constraint]) {
+                                    [_updatedConstraints addObject:constraint];
+                                    [_updatedConstraintConstants addObject:[NSNumber numberWithFloat:constraint.constant]];
+                                }
+                                constraint.constant += displacement;
+                                break;
+                            }
                         }
-                        [_avoidingView.superview layoutIfNeeded];
+                        [_avoidingView.superview setNeedsUpdateConstraints];
                     }
                     
                     [UIView animateWithDuration:animationDuration
@@ -185,7 +195,7 @@ static float _minimumAnimationDuration;
                 updatedConstraint.constant = updatedConstraintConstant;
                 
             }
-            [_avoidingView.superview layoutIfNeeded];
+            [_avoidingView.superview setNeedsUpdateConstraints];
         }
         
         [UIView animateWithDuration:animationDuration + 0.075
@@ -219,6 +229,11 @@ static float _minimumAnimationDuration;
     _avoidingView = avoidingView;
     _avoidingViewUsesAutoLayout = _avoidingView.superview.constraints.count > 0;
     _paddingCurrent = _padding;
+    
+    
+    if (_isKeyboardVisible) { // perform avoiding immediately
+        [self didChange:_lastNotification];
+    }
 }
 
 + (void)addTriggerView:(UIView *)triggerView;
