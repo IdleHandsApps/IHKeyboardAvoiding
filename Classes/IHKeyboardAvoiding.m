@@ -132,6 +132,7 @@ static NSNotification *_lastNotification;
                     }
                     
                     if (_avoidingViewUsesAutoLayout) { // if view uses constraints
+                        BOOL hasFoundFirstConstraint = NO;
                         for (NSLayoutConstraint *constraint in _avoidingView.superview.constraints) {
                             if (constraint.secondItem == _avoidingView && (constraint.secondAttribute == NSLayoutAttributeCenterY || constraint.secondAttribute == NSLayoutAttributeTop || constraint.secondAttribute == NSLayoutAttributeBottom)) {
                                 if (![_updatedConstraints containsObject:constraint]) {
@@ -139,15 +140,21 @@ static NSNotification *_lastNotification;
                                     [_updatedConstraintConstants addObject:[NSNumber numberWithFloat:constraint.constant]];
                                 }
                                 constraint.constant -= displacement;
+                                hasFoundFirstConstraint = YES;
                                 break;
                             }
-                            else if (constraint.firstItem == _avoidingView && (constraint.firstAttribute == NSLayoutAttributeCenterY || constraint.firstAttribute == NSLayoutAttributeTop || constraint.firstAttribute == NSLayoutAttributeBottom)) {
-                                if (![_updatedConstraints containsObject:constraint]) {
-                                    [_updatedConstraints addObject:constraint];
-                                    [_updatedConstraintConstants addObject:[NSNumber numberWithFloat:constraint.constant]];
+                        }
+                        if (!hasFoundFirstConstraint) {
+                            // if the constraint.secondItem wasn't found, sometimes its the constraint.firstItem that needs to be updated
+                            for (NSLayoutConstraint *constraint in _avoidingView.superview.constraints) {
+                                if (constraint.firstItem == _avoidingView && (constraint.firstAttribute == NSLayoutAttributeCenterY || constraint.firstAttribute == NSLayoutAttributeTop || constraint.firstAttribute == NSLayoutAttributeBottom)) {
+                                    if (![_updatedConstraints containsObject:constraint]) {
+                                        [_updatedConstraints addObject:constraint];
+                                        [_updatedConstraintConstants addObject:[NSNumber numberWithFloat:constraint.constant]];
+                                    }
+                                    constraint.constant += displacement;
+                                    break;
                                 }
-                                constraint.constant += displacement;
-                                break;
                             }
                         }
                         [_avoidingView.superview setNeedsUpdateConstraints];
