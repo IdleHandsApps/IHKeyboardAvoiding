@@ -83,9 +83,8 @@ static NSNotification *_lastNotification;
                     diff = keyboardHeightDiff;
                 }
                 else {
-                    UIView *view = [[UIView alloc] initWithFrame:[self getOrientedRect:triggerView.superview.frame]];
-                    CGPoint originInWindow = [view convertPoint:triggerView.frame.origin toView:nil];
-                    
+                    CGPoint originInWindow = [triggerView convertPoint:[self getOrientedRect:triggerView.bounds].origin toView:nil];
+
                     switch ([[UIApplication sharedApplication] statusBarOrientation]) {
                         case UIInterfaceOrientationPortrait:
                         case UIInterfaceOrientationLandscapeLeft:
