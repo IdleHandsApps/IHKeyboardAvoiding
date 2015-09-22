@@ -2,3 +2,5 @@
 *.xcuserstate
 
 *.xcbkptlist
+Carthage
+*.xcscmblueprint

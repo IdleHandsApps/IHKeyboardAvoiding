@@ -60,7 +60,7 @@
 		4C58B40B19A6E41B00AF3484 /* IHKeyboardAvoiding.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IHKeyboardAvoiding.podspec; sourceTree = SOURCE_ROOT; };
 		4CC2ADF61B15315B00E2060A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		4CD997391A3E3EA500C2EDF6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IHKeyboardAvoiding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding Carthage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "IHKeyboardAvoiding Carthage.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF288CDB1B0E3B070042D01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../IHKeyboardAvoiding/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				1A759CE817213F3900864F0A /* IHKeyboardAvoiding.app */,
-				BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding.framework */,
+				BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding Carthage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 			);
 			name = "IHKeyboardAvoiding Carthage";
 			productName = IHKeyboardAvoiding;
-			productReference = BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding.framework */;
+			productReference = BF288CD81B0E3B070042D01B /* IHKeyboardAvoiding Carthage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
