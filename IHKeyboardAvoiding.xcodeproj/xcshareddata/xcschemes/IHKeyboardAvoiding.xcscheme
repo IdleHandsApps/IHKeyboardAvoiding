@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A759CE717213F3900864F0A"
-               BuildableName = "IHKeyboardAvoiding.app"
+               BlueprintIdentifier = "BF288CD71B0E3B070042D01B"
+               BuildableName = "IHKeyboardAvoiding.framework"
                BlueprintName = "IHKeyboardAvoiding"
                ReferencedContainer = "container:IHKeyboardAvoiding.xcodeproj">
             </BuildableReference>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A759CE717213F3900864F0A"
-            BuildableName = "IHKeyboardAvoiding.app"
-            BlueprintName = "IHKeyboardAvoiding"
-            ReferencedContainer = "container:IHKeyboardAvoiding.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A759CE717213F3900864F0A"
-            BuildableName = "IHKeyboardAvoiding.app"
+            BlueprintIdentifier = "BF288CD71B0E3B070042D01B"
+            BuildableName = "IHKeyboardAvoiding.framework"
             BlueprintName = "IHKeyboardAvoiding"
             ReferencedContainer = "container:IHKeyboardAvoiding.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A759CE717213F3900864F0A"
-            BuildableName = "IHKeyboardAvoiding.app"
+            BlueprintIdentifier = "BF288CD71B0E3B070042D01B"
+            BuildableName = "IHKeyboardAvoiding.framework"
             BlueprintName = "IHKeyboardAvoiding"
             ReferencedContainer = "container:IHKeyboardAvoiding.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
