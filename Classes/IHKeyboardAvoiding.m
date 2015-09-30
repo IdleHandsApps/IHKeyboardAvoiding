@@ -213,10 +213,10 @@ static NSNotification *_lastNotification;
                              }
                              else {
                                  _avoidingView.transform = CGAffineTransformIdentity;
+                                 [_updatedConstraints removeAllObjects];
+                                 [_updatedConstraintConstants removeAllObjects];
                              }
                          } completion:^(BOOL finished){
-                             [_updatedConstraints removeAllObjects];
-                             [_updatedConstraintConstants removeAllObjects];
                          }];
     }
     _isKeyboardVisible = CGRectContainsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
