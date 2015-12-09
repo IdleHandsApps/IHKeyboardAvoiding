@@ -219,7 +219,7 @@ static NSNotification *_lastNotification;
                              [_updatedConstraintConstants removeAllObjects];
                          }];
     }
-    _isKeyboardVisible = CGRectContainsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
+    _isKeyboardVisible = CGRectIntersectsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
 }
 
 + (void)setAvoidingView:(UIView *)avoidingView {
