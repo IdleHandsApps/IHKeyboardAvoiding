@@ -15,6 +15,8 @@ enum KeyboardAvoidingMode {
 }
 typedef KeyboardAvoidingMode;
 
+typedef void (^IHKeyboardAvoidingBlock)(BOOL isShowing, float duration, float displacement, UIViewAnimationOptions animOptions);
+
 @interface IHKeyboardAvoiding : NSObject
 
 // use this call for general avoiding
@@ -29,6 +31,9 @@ typedef KeyboardAvoidingMode;
 
 // sets avoiding view to nil, and removes any trigger views
 + (void)removeAll;
+
+// sets a block which is called whenever the keyboard is showing or hiding. Set in viewDidAppear, and nil in viewWillDisappear
++ (void)setAvoidingBlock:(IHKeyboardAvoidingBlock)avoidingBlock;
 
 // changes the avoiding mode
 + (void)setKeyboardAvoidingMode:(KeyboardAvoidingMode)keyboardAvoidingMode;

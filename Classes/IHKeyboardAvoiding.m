@@ -31,6 +31,7 @@ static int _paddingCurrent = 0;
 static KeyboardAvoidingMode _keyboardAvoidingMode = KeyboardAvoidingModeMinimum;
 static float _minimumAnimationDuration;
 static NSNotification *_lastNotification;
+static IHKeyboardAvoidingBlock _avoidingBlock;
 
 + (void)didChange:(NSNotification *)notification
 {
@@ -49,6 +50,7 @@ static NSNotification *_lastNotification;
     
     CGSize screenSize = [self screenSize];
     UIViewAnimationCurve animationCurve = [[[notification userInfo] objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    UIViewAnimationOptions animationOptions = animationCurve << 16;
     
     // if split keyboard is being dragged, then skip notification
     if (keyboardFrame.size.height == 0 && !IS_PHONE) {
@@ -84,7 +86,7 @@ static NSNotification *_lastNotification;
                 }
                 else {
                     CGPoint originInWindow = [triggerView convertPoint:[self getOrientedRect:triggerView.bounds].origin toView:nil];
-
+                    
                     switch ([[UIApplication sharedApplication] statusBarOrientation]) {
                         case UIInterfaceOrientationPortrait:
                         case UIInterfaceOrientationLandscapeLeft:
@@ -101,7 +103,7 @@ static NSNotification *_lastNotification;
                     }
                 }
                 
-                if (diff < _buffer || keyboardHeightDiff != 0) {
+                if (diff < _buffer || keyboardHeightDiff != 0 || _avoidingBlock) {
                     
                     float displacement = ( isPortrait ? -keyboardFrame.size.height : -keyboardFrame.size.width);
                     float delay = 0;
@@ -161,7 +163,7 @@ static NSNotification *_lastNotification;
                     
                     [UIView animateWithDuration:animationDuration
                                           delay:delay
-                                        options:animationDuration > 0 ? (animationCurve << 16) : UIViewAnimationOptionCurveLinear
+                                        options:animationOptions
                                      animations:^{
                                          if (_avoidingViewUsesAutoLayout) {
                                              [_avoidingView.superview layoutIfNeeded]; // to animate constraint changes
@@ -173,6 +175,10 @@ static NSNotification *_lastNotification;
                                          }
                                      }
                                      completion:nil];
+                    
+                    if (_avoidingBlock) {
+                        _avoidingBlock(isKeyBoardShowing, animationDuration, keyboardFrame.size.height, animationOptions);
+                    }
                     
                 }
             }
@@ -206,7 +212,7 @@ static NSNotification *_lastNotification;
         
         [UIView animateWithDuration:animationDuration + 0.075
                               delay:0
-                            options:(animationCurve << 16)
+                            options:animationOptions
                          animations:^{
                              if (_avoidingViewUsesAutoLayout) {
                                  [_avoidingView.superview layoutIfNeeded];
@@ -218,6 +224,9 @@ static NSNotification *_lastNotification;
                              [_updatedConstraints removeAllObjects];
                              [_updatedConstraintConstants removeAllObjects];
                          }];
+        if (_avoidingBlock) {
+            _avoidingBlock(isKeyBoardShowing, animationDuration + 0.075, 0, animationOptions);
+        }
     }
     _isKeyboardVisible = CGRectContainsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
 }
@@ -235,6 +244,7 @@ static NSNotification *_lastNotification;
     _avoidingView = avoidingView;
     _avoidingViewUsesAutoLayout = _avoidingView.superview.constraints.count > 0;
     _paddingCurrent = _padding;
+    _avoidingBlock = nil;
     
     
     if (_isKeyboardVisible) { // perform avoiding immediately
@@ -255,6 +265,15 @@ static NSNotification *_lastNotification;
 + (void)removeAll {
     [_triggerViews removeAllObjects];
     _avoidingView = nil;
+    _avoidingBlock = nil;
+}
+
++ (void)setAvoidingBlock:(IHKeyboardAvoidingBlock)avoidingBlock {
+    [self init];
+    _avoidingBlock = avoidingBlock;
+    if (_triggerViews.count == 0) {
+        [_triggerViews addObject:[[UIView alloc] init]];
+    }
 }
 
 + (BOOL)isKeyboardVisible {
