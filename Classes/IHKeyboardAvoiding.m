@@ -228,7 +228,7 @@ static IHKeyboardAvoidingBlock _avoidingBlock;
             _avoidingBlock(isKeyBoardShowing, animationDuration + 0.075, 0, animationOptions);
         }
     }
-    _isKeyboardVisible = CGRectContainsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
+    _isKeyboardVisible = CGRectIntersectsRect(CGRectMake(0, 0, screenSize.width, screenSize.height), keyboardFrame);
 }
 
 + (void)setAvoidingView:(UIView *)avoidingView {
