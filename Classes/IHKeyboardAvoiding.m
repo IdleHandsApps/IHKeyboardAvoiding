@@ -219,10 +219,10 @@ static IHKeyboardAvoidingBlock _avoidingBlock;
                              }
                              else {
                                  _avoidingView.transform = CGAffineTransformIdentity;
+                                 [_updatedConstraints removeAllObjects];
+                                 [_updatedConstraintConstants removeAllObjects];
                              }
                          } completion:^(BOOL finished){
-                             [_updatedConstraints removeAllObjects];
-                             [_updatedConstraintConstants removeAllObjects];
                          }];
         if (_avoidingBlock) {
             _avoidingBlock(isKeyBoardShowing, animationDuration + 0.075, 0, animationOptions);
