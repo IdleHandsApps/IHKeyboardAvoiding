@@ -1,9 +1,20 @@
-![alt icon](https://github.com/IdleHandsApps/IHKeyboardAvoiding/blob/gh-pages/Icon-40.png) IHKeyboardAvoiding [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+<p align="center">
+  <img alt="Reusable" src="https://github.com/IdleHandsApps/IHKeyboardAvoiding/blob/gh-pages/Icon-40.png" />
+</p>
+
+IHKeyboardAvoiding Swift Beta [![Language: Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg)](https://swift.org)
 ------------------------------
 
 An elegant solution for keeping any UIView visible when the keyboard is being shown
 
 ![alt demo](https://github.com/IdleHandsApps/IHKeyboardAvoiding/blob/gh-pages/IHKeyboardAvoidingDemo.gif)
+
+## Requirements
+
+|                  |  IHKeyboardAvoiding Version  |
+|------------------|--------------------|
+|    Objective C   |        2.6.0       |
+|       Swift      |        3.0.0 +     |
 
 ## Description
 
@@ -36,24 +47,26 @@ pod 'IHKeyboardAvoiding'
 ## How to use
 
 To set the avoiding view
-```objective-c
-[IHKeyboardAvoiding setAvoidingView:(UIView *)avoidingView];
+```swift
+KeyboardAvoiding.avoidingView = self.avoidingView
 ```
 
-Put it in ```(void)viewDidLoad``` or ```(void)viewDidAppear:(BOOL)animated``` depending on your usage
+Put it in ```viewDidLoad()``` or ```viewDidAppear(_ animated: Bool)``` depending on your usage
 
-If you're unsure put it in ```(void)viewDidAppear:(BOOL)animated```
+If you're unsure put it in ```viewDidAppear(_ animated: Bool)```
 
-If you need to set the avoidingView, or its properites, dynamically consider putting it in ```(BOOL)textViewShouldBeginEditing:(UITextView *)textView```
+If you need to set the avoidingView, or its properites, dynamically consider putting it in ```textViewShouldBeginEditing(_ textView: UITextView)```
 
 Optional methods    
-```(void)setAvoidingView:(UIView *)avoidingView withTriggerView:(UIView *)triggerView``` Use this to set an avoidingView but have a different view that triggers the avoiding. If a triggerView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the triggerView is above the keyboard
-```(void)setBuffer:(int)buffer``` The avoidingView will move if the keyboard is within [buffer] points of the triggerView's frame.  Default buffer is 0  
-```(void)setPaddingForCurrentAvoidingView:(int)padding``` The padding to put between the keyboard and triggerView.  Default padding is 0
+```swift
+KeyboardAvoiding.setAvoidingView(self.avoidingView, withTriggerView: self.triggerView)
+``` Use this to set an avoidingView but have a different view that triggers the avoiding. If a triggerView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the triggerView is above the keyboard
+```KeyboardAvoiding.buffer``` The avoidingView will move if the keyboard is within [buffer] points of the triggerView's frame.  Default buffer is 0  
+```KeyboardAvoiding.paddingForCurrentAvoidingView``` The padding to put between the keyboard and triggerView.  Default padding is 0
 
-## Buy now and get these free gifts :)
+Enable tap to dismiss the keyboard by simply changing any UIView to be an instance of KeyboardDismissingView in you nib/storyboard
 
-Tap to dismiss the keyboard with IHKeyboardDismissing https://github.com/IdleHandsApps/IHKeyboardDismissing
+## Buy now and get this free gift :)
 
 A drop in nav controller with cool parallax transitions https://github.com/IdleHandsApps/IHParallaxNavigationController
 
@@ -91,6 +104,7 @@ Distributed under the MIT License
 * Improve demo project
 
 ## Known Issue
+iPad keyboard slitting and docking issues - I'll fix very soon!
 
 In iOS8 for iPad, when splitting/undocking the keyboard the notifications arent reliably sent by the OS meaning IHKeyboardAvoiding can be left in the wrong state
 A radar has been filed http://openradar.appspot.com/18010127
