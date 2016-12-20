@@ -58,10 +58,8 @@ If you're unsure put it in ```viewDidAppear(_ animated: Bool)```
 If you need to set the avoidingView, or its properites, dynamically consider putting it in ```textViewShouldBeginEditing(_ textView: UITextView)```
 
 Optional methods    
-```swift
-KeyboardAvoiding.setAvoidingView(self.avoidingView, withTriggerView: self.triggerView)
-``` Use this to set an avoidingView but have a different view that triggers the avoiding. If a triggerView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the triggerView is above the keyboard
-```KeyboardAvoiding.buffer``` The avoidingView will move if the keyboard is within [buffer] points of the triggerView's frame.  Default buffer is 0  
+```KeyboardAvoiding.setAvoidingView(self.avoidingView, withTriggerView: self.triggerView)``` Use this to set an avoidingView but have a different view that triggers the avoiding. If a triggerView's frame will be intersected by the keyboard, then the avoidingView will be moved so that the triggerView is above the keyboard
+```KeyboardAvoiding.buffer``` The avoidingView will move if the keyboard is within ```buffer``` points of the triggerView's frame.  Default buffer is 0  
 ```KeyboardAvoiding.paddingForCurrentAvoidingView``` The padding to put between the keyboard and triggerView.  Default padding is 0
 
 Enable tap to dismiss the keyboard by simply changing any UIView to be an instance of KeyboardDismissingView in you nib/storyboard
