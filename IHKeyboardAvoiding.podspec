@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
-  s.name             = 'IHKeyboardAvoiding'
-  s.version          = '3.0'
-  s.summary          = 'IHKeyboardAvoiding is an elegant solution for keeping any UIView visible when the keyboard is being shown'
-  s.homepage         = 'https://github.com/IdleHandsApps/IHKeyboardAvoiding/'
+  s.name             = "IHKeyboardAvoiding"
+  s.version          = "3.1"
+  s.summary          = "IHKeyboardAvoiding is an elegant solution for keeping any UIView visible when the keyboard is being shown"
+  s.homepage         = "https://github.com/IdleHandsApps/IHKeyboardAvoiding/"
   s.description      = <<-DESC
                        IHKeyboardAvoiding will translate any UIView up when the keyboard is being shown, then return it when the keyboard is hidden.
 
@@ -12,12 +12,12 @@ What sets IHKeyboardAvoiding apart from other keyboard avoiding solutions is tha
 
 If Autolayout is used then the constraints are animated, otherwise a CGAffine translation is done
                        DESC
-  s.license          = 'MIT'
-  s.author           = { 'Fraser Scott-Morrison' => 'fraserscottmorrison@me.com' }
+  s.license          = "MIT"
+  s.author           = { "Fraser Scott-Morrison' => 'fraserscottmorrison@me.com" }
   s.source           = { :git => 'https://github.com/IdleHandsApps/IHKeyboardAvoiding.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = "8.0"
-  s.source_files = 'Sources/*.swift'
+  s.source_files = "Sources/*.swift"
 
   s.requires_arc = true
   s.framework  = "UIKit"
