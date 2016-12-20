@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KeyboardAvoiding" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jgG-nb-ng0" customClass="KeyboardDismissingView" customModule="KeyboardAvoiding" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xu8-p4-P2C">
+                                <rect key="frame" x="112" y="465" width="152" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MNo-pP-kqJ"/>
+                                    <constraint firstAttribute="width" constant="152" id="h4d-zz-r0e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81G-UX-yXH">
+                                <rect key="frame" x="40" y="436" width="295" height="128"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Constrained to self.avoidingView" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-fd-dI0">
+                                        <rect key="frame" x="22" y="25" width="250" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8CL-vg-3tn"/>
+                                            <constraint firstAttribute="width" constant="250" id="Fl6-j6-Cpc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.043137254899999998" green="0.60392156860000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="o9Z-fd-dI0" secondAttribute="bottom" constant="73" id="3ft-Le-TEZ"/>
+                                    <constraint firstItem="o9Z-fd-dI0" firstAttribute="centerX" secondItem="81G-UX-yXH" secondAttribute="centerX" id="4h6-Ni-kmF"/>
+                                    <constraint firstAttribute="height" constant="128" id="JEl-8n-qD6"/>
+                                    <constraint firstAttribute="width" constant="295" id="qTd-xH-6UZ"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Constrained to self.view" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMs-0d-RnG">
+                                <rect key="frame" x="62" y="514" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="cif-AW-7Wi"/>
+                                    <constraint firstAttribute="height" constant="30" id="qtp-2o-oBM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Constrained to self.avoidingView" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1kH-9b-v41">
+                                <rect key="frame" x="62" y="380" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eva-z7-yeM"/>
+                                    <constraint firstAttribute="width" constant="250" id="riW-LH-2Ql"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="81G-UX-yXH" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="5Dp-Ga-iAV"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="81G-UX-yXH" secondAttribute="bottom" constant="103" id="73d-fN-OGJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xu8-p4-P2C" secondAttribute="bottom" constant="172" id="Axw-TK-HrR"/>
+                            <constraint firstItem="Xu8-p4-P2C" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="H1Y-Zq-yMu"/>
+                            <constraint firstItem="UMs-0d-RnG" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="NYc-0K-Gzb"/>
+                            <constraint firstItem="1kH-9b-v41" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="Sj5-DM-ccx"/>
+                            <constraint firstItem="81G-UX-yXH" firstAttribute="top" secondItem="1kH-9b-v41" secondAttribute="bottom" constant="26" id="aaM-Om-2bo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UMs-0d-RnG" secondAttribute="bottom" constant="123" id="xhL-MY-2dA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="avoidingView" destination="81G-UX-yXH" id="ohR-Oz-ECM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
+        </scene>
+    </scenes>
+</document>
