@@ -225,7 +225,7 @@ import UIKit
                 self.avoidingBlock!(isKeyBoardShowing, animationDuration + 0.075, 0, UIViewAnimationOptions(rawValue: UInt(animationOptions)))
             }
         }
-        self.isKeyboardVisible = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(screenSize.width), height: CGFloat(screenSize.height)).contains(keyboardFrame)
+        self.isKeyboardVisible = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(screenSize.width), height: CGFloat(screenSize.height)).intersects(keyboardFrame)
         
         
     }
