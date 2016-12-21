@@ -25,7 +25,7 @@ public enum KeyboardAvoidingMode: Int {
     private static var triggerViews = [UIView]()
     
     static var buffer: CGFloat = 0.0
-    static var paddingForCurrentAvoidingView: CGFloat = 0.0
+    public static var paddingForCurrentAvoidingView: CGFloat = 0.0
     static var padding: CGFloat = 0.0 {
         willSet {
             if self.paddingForCurrentAvoidingView == newValue {
@@ -231,7 +231,7 @@ public enum KeyboardAvoidingMode: Int {
     }
     
     // publicly, the triggerView is reqiured if the avoidingView isn't nil
-    class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
+    public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
         self.setAvoidingView(avoidingView, withOptionalTriggerView: triggerView)
     }
     
