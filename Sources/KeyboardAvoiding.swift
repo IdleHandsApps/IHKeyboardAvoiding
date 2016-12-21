@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum KeyboardAvoidingMode: Int {
+@objc public enum KeyboardAvoidingMode: Int {
     case maximum
     case minimum
     case minimumDelayed
@@ -24,9 +24,9 @@ public enum KeyboardAvoidingMode: Int {
     private static var avoidingViewUsesAutoLayout = false
     private static var triggerViews = [UIView]()
     
-    static var buffer: CGFloat = 0.0
+    public static var buffer: CGFloat = 0.0
     public static var paddingForCurrentAvoidingView: CGFloat = 0.0
-    static var padding: CGFloat = 0.0 {
+    public static var padding: CGFloat = 0.0 {
         willSet {
             if self.paddingForCurrentAvoidingView == newValue {
                 // if paddingCurrent has been set explicitly, dont reset it
@@ -34,8 +34,8 @@ public enum KeyboardAvoidingMode: Int {
             }
         }
     }
-    static var keyboardAvoidingMode = KeyboardAvoidingMode.minimum
-    static var avoidingBlock: ((Bool, CGFloat, CGFloat, UIViewAnimationOptions)->Void)? {
+    public static var keyboardAvoidingMode = KeyboardAvoidingMode.minimum
+    public static var avoidingBlock: ((Bool, CGFloat, CGFloat, UIViewAnimationOptions)->Void)? {
         willSet {
             self.initialise()
         }
@@ -255,17 +255,17 @@ public enum KeyboardAvoidingMode: Int {
         self.deinitialise()
     }
     
-    class func addTriggerView(_ triggerView: UIView) {
+    public class func addTriggerView(_ triggerView: UIView) {
         self.triggerViews.append(triggerView)
     }
     
-    class func removeTriggerView(_ triggerView: UIView) {
+    public class func removeTriggerView(_ triggerView: UIView) {
         if let index = triggerViews.index(of: triggerView) as Int! {
             self.triggerViews.remove(at: index)
         }
     }
     
-    class func removeAll() {
+    public class func removeAll() {
         self.triggerViews.removeAll()
         self.avoidingView = nil
         self.avoidingBlock = nil
