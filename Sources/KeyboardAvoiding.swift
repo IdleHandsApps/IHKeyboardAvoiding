@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum KeyboardAvoidingMode: Int {
+public enum KeyboardAvoidingMode: Int {
     case maximum
     case minimum
     case minimumDelayed
 }
 
-@objc class KeyboardAvoiding: NSObject {
+@objc public class KeyboardAvoiding: NSObject {
     
     private static var minimumAnimationDuration: CGFloat = 0.0
     private static var lastNotification: Foundation.Notification!
@@ -25,7 +25,7 @@ enum KeyboardAvoidingMode: Int {
     private static var triggerViews = [UIView]()
     
     static var buffer: CGFloat = 0.0
-    static var paddingForCurrentAvoidingView: CGFloat = 0.0
+    public static var paddingForCurrentAvoidingView: CGFloat = 0.0
     static var padding: CGFloat = 0.0 {
         willSet {
             if self.paddingForCurrentAvoidingView == newValue {
@@ -47,7 +47,7 @@ enum KeyboardAvoidingMode: Int {
         }
     }
     private static var _avoidingView: UIView?
-    static var avoidingView: UIView? {
+    public static var avoidingView: UIView? {
         get {
             return _avoidingView
         }
@@ -231,7 +231,7 @@ enum KeyboardAvoidingMode: Int {
     }
     
     // publicly, the triggerView is reqiured if the avoidingView isn't nil
-    class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
+    public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
         self.setAvoidingView(avoidingView, withOptionalTriggerView: triggerView)
     }
     
