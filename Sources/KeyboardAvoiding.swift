@@ -47,7 +47,7 @@ public enum KeyboardAvoidingMode: Int {
         }
     }
     private static var _avoidingView: UIView?
-    static var avoidingView: UIView? {
+    public static var avoidingView: UIView? {
         get {
             return _avoidingView
         }
