@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum KeyboardAvoidingMode: Int {
+public enum KeyboardAvoidingMode: Int {
     case maximum
     case minimum
     case minimumDelayed
 }
 
-@objc class KeyboardAvoiding: NSObject {
+@objc public class KeyboardAvoiding: NSObject {
     
     private static var minimumAnimationDuration: CGFloat = 0.0
     private static var lastNotification: Foundation.Notification!

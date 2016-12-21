@@ -8,9 +8,9 @@
 
 import UIKit
 
-class KeyboardDismissingView: UIView {
+public class KeyboardDismissingView: UIView {
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         _ = KeyboardDismissingView.resignAnyFirstResponder(self)
     }
