@@ -21,17 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xu8-p4-P2C">
-                                <rect key="frame" x="131" y="534" width="152" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="MNo-pP-kqJ"/>
-                                    <constraint firstAttribute="width" constant="152" id="h4d-zz-r0e"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81G-UX-yXH">
-                                <rect key="frame" x="59.666666666666629" y="505" width="295" height="128"/>
+                                <rect key="frame" x="59.666666666666657" y="505" width="295" height="128"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Constrained to self.avoidingView" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9Z-fd-dI0">
                                         <rect key="frame" x="22" y="25" width="250" height="30"/>
@@ -40,7 +31,10 @@
                                             <constraint firstAttribute="width" constant="250" id="Fl6-j6-Cpc"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="qRL-Jj-Dj4"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.043137254899999998" green="0.60392156860000001" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -59,6 +53,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xLd-f2-Qbb"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Constrained to self.avoidingView" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1kH-9b-v41">
                                 <rect key="frame" x="82" y="449" width="250" height="30"/>
@@ -67,15 +64,16 @@
                                     <constraint firstAttribute="width" constant="250" id="riW-LH-2Ql"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="cIx-7t-85y"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="81G-UX-yXH" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="5Dp-Ga-iAV"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="81G-UX-yXH" secondAttribute="bottom" constant="103" id="73d-fN-OGJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xu8-p4-P2C" secondAttribute="bottom" constant="172" id="Axw-TK-HrR"/>
-                            <constraint firstItem="Xu8-p4-P2C" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="H1Y-Zq-yMu"/>
                             <constraint firstItem="UMs-0d-RnG" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="NYc-0K-Gzb"/>
                             <constraint firstItem="1kH-9b-v41" firstAttribute="centerX" secondItem="jgG-nb-ng0" secondAttribute="centerX" id="Sj5-DM-ccx"/>
                             <constraint firstItem="81G-UX-yXH" firstAttribute="top" secondItem="1kH-9b-v41" secondAttribute="bottom" constant="26" id="aaM-Om-2bo"/>
@@ -84,6 +82,9 @@
                     </view>
                     <connections>
                         <outlet property="avoidingView" destination="81G-UX-yXH" id="ohR-Oz-ECM"/>
+                        <outlet property="textFieldBottom" destination="UMs-0d-RnG" id="1hz-Qc-26J"/>
+                        <outlet property="textFieldMiddle" destination="o9Z-fd-dI0" id="JKM-TV-X9o"/>
+                        <outlet property="textFieldTop" destination="1kH-9b-v41" id="fv7-PX-acp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
