@@ -96,13 +96,3 @@ It'd be great to hear about any cool apps that are using IHKeyboardAvoiding
 ## License 
 
 Distributed under the MIT License
-
-## Do To
-
-* Improve demo project
-
-## Known Issue
-iPad keyboard slitting and docking issues - I'll fix very soon!
-
-In iOS8 for iPad, when splitting/undocking the keyboard the notifications arent reliably sent by the OS meaning IHKeyboardAvoiding can be left in the wrong state
-A radar has been filed http://openradar.appspot.com/18010127
