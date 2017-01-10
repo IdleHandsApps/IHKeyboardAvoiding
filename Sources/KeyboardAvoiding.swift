@@ -111,27 +111,29 @@ import UIKit
                     case .portrait, .landscapeLeft:
                         diff = keyboardFrame.origin.y
                         diff = diff - (originInWindow.y + triggerView.frame.size.height)
+                        break
                     case .portraitUpsideDown, .landscapeRight:
                         diff = screenSize.height - keyboardFrame.size.height
                         diff = diff - (originInWindow.y + triggerView.frame.size.height)
+                        break
                     default:
                         break
                     }
                 }
-                if diff < self.buffer || keyboardHeightDiff != 0 || self.avoidingBlock != nil {
+                if diff < self.buffer || keyboardHeightDiff != 0 {
                     var displacement = (isPortrait ? -keyboardFrame.size.height : -keyboardFrame.size.width)
                     var delay: CGFloat = 0.0
                     switch self.keyboardAvoidingMode {
                     case .maximum:
                         self.minimumAnimationDuration = animationDuration
-                        
+                        break
                     case .minimumDelayed:
                         let minimumDisplacement = max(displacement, diff)
                         self.minimumAnimationDuration = animationDuration * (minimumDisplacement / displacement)
                         displacement = minimumDisplacement - self.paddingForCurrentAvoidingView
                         delay = (animationDuration - self.minimumAnimationDuration)
                         animationDuration = self.minimumAnimationDuration
-                        
+                        break
                     default:
                         let minimumDisplacement = max(displacement, diff)
                         displacement = minimumDisplacement - (keyboardHeightDiff == 0 ? self.paddingForCurrentAvoidingView : 0)
@@ -181,20 +183,21 @@ import UIKit
                             }
                         }, completion: { _ in })
                     }
-                    if self.avoidingBlock != nil {
-                        self.avoidingBlock!(isKeyBoardShowing, animationDuration, keyboardFrame.size.height, UIViewAnimationOptions(rawValue: UInt(animationOptions)))
-                    }
+                }
+                if self.avoidingBlock != nil {
+                    self.avoidingBlock!(isKeyBoardShowing, animationDuration, keyboardFrame.size.height, UIViewAnimationOptions(rawValue: UInt(animationOptions)))
                 }
             }
             
         }
-        if self.isKeyboardVisible {
+        else if self.isKeyboardVisible {
             // hiding, undocking or splitting
             switch self.keyboardAvoidingMode {
             case .maximum:
                 break
             case .minimumDelayed:
                 animationDuration = self.minimumAnimationDuration
+                break
             default:
                 break
             }
