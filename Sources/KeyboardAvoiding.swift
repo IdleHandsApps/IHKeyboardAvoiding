@@ -140,7 +140,7 @@ import UIKit
                         
                     }
                     
-                    if self.avoidingView != nil {
+                    if self.avoidingView != nil && self.avoidingView!.superview != nil {
                         if self.avoidingViewUsesAutoLayout {
                             // if view uses constraints
                             var hasFoundFirstConstraint = false
@@ -203,7 +203,7 @@ import UIKit
             }
             
             // restore state
-            if self.avoidingView != nil {
+            if self.avoidingView != nil && self.avoidingView!.superview != nil {
                 if self.avoidingViewUsesAutoLayout {
                     // if view uses constrains
                     for (index, updatedConstraint) in self.updatedConstraints.enumerated() {
@@ -242,7 +242,7 @@ import UIKit
         self.initialise()
         
         self._avoidingView = avoidingView
-        self.avoidingViewUsesAutoLayout = avoidingView != nil ? avoidingView!.superview!.constraints.count > 0 : false
+        self.avoidingViewUsesAutoLayout = (avoidingView != nil && avoidingView!.superview != nil) ? avoidingView!.superview!.constraints.count > 0 : false
         
         self.triggerViews.removeAll()
         if triggerView != nil {
