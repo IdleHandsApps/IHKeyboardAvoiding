@@ -63,15 +63,14 @@ import UIKit
         let isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.shared.statusBarOrientation)
         // get the keyboard & window frames
         
-        var keyboardFrame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
-        keyboardFrame = self.getOrientedRect(keyboardFrame)
+        let keyboardFrame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         // keyboardHeightDiff used when user is switching between different keyboards that have different heights
         let keyboardFrameBegin = notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as! CGRect
         var keyboardHeightDiff:CGFloat = 0.0
         if keyboardFrameBegin.size.height > 0 {
-            keyboardHeightDiff = self.getOrientedRect(keyboardFrameBegin).size.height - keyboardFrame.size.height
+            keyboardHeightDiff = keyboardFrameBegin.size.height - keyboardFrame.size.height
         }
-        let screenSize = self.screenSize()
+        let screenSize = UIScreen.main.bounds.size
         let animationCurve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! Int
         let animationOptions = animationCurve << 16
         // if split keyboard is being dragged, then skip notification
@@ -106,7 +105,7 @@ import UIKit
                     diff = keyboardHeightDiff
                 }
                 else {
-                    let originInWindow = triggerView.convert(self.getOrientedRect(triggerView.bounds).origin, to: nil)
+                    let originInWindow = triggerView.convert(triggerView.bounds.origin, to: nil)
                     switch UIApplication.shared.statusBarOrientation {
                     case .portrait, .landscapeLeft:
                         diff = keyboardFrame.origin.y
@@ -290,20 +289,6 @@ import UIKit
     }
     
     // MARK: - Helpers
-    
-    class func screenSize() -> CGSize {
-        return self.getOrientedRect(UIScreen.main.bounds).size
-    }
-    
-    class func getOrientedRect(_ originalRect: CGRect) -> CGRect {
-        var orientedRect = originalRect
-        if #available(iOS 8.0, *) {
-            if self.isLandscape() {
-                orientedRect = CGRect(x: CGFloat(originalRect.origin.y), y: CGFloat(originalRect.origin.x), width: CGFloat(originalRect.size.height), height: CGFloat(originalRect.size.width))
-            }
-        }
-        return orientedRect
-    }
     
     class func isLandscape() -> Bool {
         return UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation)
