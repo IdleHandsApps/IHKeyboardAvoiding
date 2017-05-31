@@ -17,7 +17,7 @@ import UIKit
 @objc public class KeyboardAvoiding: NSObject {
     
     private static var minimumAnimationDuration: CGFloat = 0.0
-    private static var lastNotification: Foundation.Notification!
+    private static var lastNotification: Foundation.Notification?
     private static var updatedConstraints = [NSLayoutConstraint]()
     private static var updatedConstraintConstants = [CGFloat]()
     private(set) static var isKeyboardVisible = false
@@ -250,9 +250,9 @@ import UIKit
         
         self.paddingForCurrentAvoidingView = self.padding
         self.avoidingBlock = nil
-        if self.isKeyboardVisible && avoidingView != nil {
+        if self.isKeyboardVisible && avoidingView != nil && self.lastNotification != nil {
             // perform avoiding immediately
-            self.didChange(self.lastNotification)
+            self.didChange(self.lastNotification!)
         }
         self.deinitialise()
     }
