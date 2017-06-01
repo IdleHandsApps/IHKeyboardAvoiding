@@ -16,7 +16,7 @@ import UIKit
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        var isDismissing = KeyboardDismissingView.resignAnyFirstResponder(self)
+        let isDismissing = KeyboardDismissingView.resignAnyFirstResponder(self)
         
         if isDismissing {
             self.dismissingBlock?()
