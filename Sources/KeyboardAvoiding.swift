@@ -56,7 +56,7 @@ import UIKit
         }
     }
     
-    class func didChange(_ notification: Foundation.Notification) {
+    @objc class func didChange(_ notification: Foundation.Notification) {
         var isKeyBoardShowing = false
         // isKeyBoardShowing and is it merged and docked.
         
@@ -294,7 +294,7 @@ import UIKit
         return UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation)
     }
     
-    class func applicationDidEnterBackground(_ notification: Foundation.Notification) {
+    @objc class func applicationDidEnterBackground(_ notification: Foundation.Notification) {
         // Autolayout is reset when app goes into background, so we need to dismiss the keyboard too
         UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
     }
