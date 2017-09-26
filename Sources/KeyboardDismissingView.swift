@@ -24,7 +24,7 @@ import UIKit
         self.touchEndedBlock?()
     }
     
-    public class func resignAnyFirstResponder(_ view: UIView) -> Bool {
+    @discardableResult public class func resignAnyFirstResponder(_ view: UIView) -> Bool {
         var hasResigned = false
         for subView in view.subviews {
             if subView.isFirstResponder {

@@ -228,8 +228,6 @@ import UIKit
             }
         }
         self.isKeyboardVisible = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(screenSize.width), height: CGFloat(screenSize.height)).intersects(keyboardFrame)
-        
-        
     }
     
     // publicly, the triggerView is reqiured if the avoidingView isn't nil
@@ -273,12 +271,16 @@ import UIKit
         self.avoidingBlock = nil
     }
     
-    
     private class func initialise() {
         // make sure we only add this once
         if self.avoidingBlock == nil && self.avoidingView == nil {
-            NotificationCenter.default.addObserver(self, selector: #selector(KeyboardAvoiding.applicationDidEnterBackground(_:)), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(KeyboardAvoiding.didChange(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main, using: { notification in
+                // Autolayout is reset when app goes into background, so we need to dismiss the keyboard too
+                UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
+            })
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: OperationQueue.main, using: { notification in
+                self.didChange(notification)
+            })
         }
     }
     private class func deinitialise() {
@@ -287,15 +289,5 @@ import UIKit
             NotificationCenter.default.removeObserver(self)
         }
     }
-    
-    // MARK: - Helpers
-    
-    class func isLandscape() -> Bool {
-        return UIInterfaceOrientationIsLandscape(UIApplication.shared.statusBarOrientation)
-    }
-    
-    class func applicationDidEnterBackground(_ notification: Foundation.Notification) {
-        // Autolayout is reset when app goes into background, so we need to dismiss the keyboard too
-        UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
-    }
 }
+
