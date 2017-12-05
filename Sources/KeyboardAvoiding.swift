@@ -43,7 +43,6 @@ import UIKit
             if self.triggerViews.count == 0 && self.avoidingBlock != nil {
                 self.triggerViews.append(UIView())
             }
-            self.deinitialise()
         }
     }
     private static var _avoidingView: UIView?
@@ -65,7 +64,12 @@ import UIKit
         
         let keyboardFrame = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         // keyboardHeightDiff used when user is switching between different keyboards that have different heights
-        let keyboardFrameBegin = notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as! CGRect
+        var keyboardFrameBegin = notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as! CGRect
+        
+        // hack for bug in iOS 11.2
+        let keyboardFrameEnd = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
+        keyboardFrameBegin = CGRect(x: keyboardFrameBegin.origin.x, y: keyboardFrameBegin.origin.y, width: keyboardFrameBegin.size.width, height: keyboardFrameEnd.size.height)
+
         var keyboardHeightDiff:CGFloat = 0.0
         if keyboardFrameBegin.size.height > 0 {
             keyboardHeightDiff = keyboardFrameBegin.size.height - keyboardFrame.size.height
@@ -230,7 +234,7 @@ import UIKit
         self.isKeyboardVisible = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(screenSize.width), height: CGFloat(screenSize.height)).intersects(keyboardFrame)
     }
     
-    // publicly, the triggerView is reqiured if the avoidingView isn't nil
+    // The triggerView is required if the avoidingView isn't nil
     public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
         self.setAvoidingView(avoidingView, withOptionalTriggerView: triggerView)
     }
@@ -252,7 +256,6 @@ import UIKit
             // perform avoiding immediately
             self.didChange(self.lastNotification!)
         }
-        self.deinitialise()
     }
     
     public class func addTriggerView(_ triggerView: UIView) {
@@ -281,12 +284,6 @@ import UIKit
             NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: OperationQueue.main, using: { notification in
                 self.didChange(notification)
             })
-        }
-    }
-    private class func deinitialise() {
-        // make sure we only add this once
-        if self.avoidingBlock == nil && self.avoidingView == nil {
-            NotificationCenter.default.removeObserver(self)
         }
     }
 }
