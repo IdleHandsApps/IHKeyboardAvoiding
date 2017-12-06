@@ -168,6 +168,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_IHKeyboardAvoiding.xcodeproj/Configs/Project.xcconfig /* IHKeyboardAvoiding.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;
@@ -176,6 +177,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = __PBXFileRef_IHKeyboardAvoiding.xcodeproj/Configs/Project.xcconfig /* IHKeyboardAvoiding.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
