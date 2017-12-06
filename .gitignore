@@ -4,3 +4,5 @@
 *.xcbkptlist
 Carthage
 *.xcscmblueprint
+
+.build
