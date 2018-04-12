@@ -39,9 +39,20 @@ If Autolayout is used then the constraints are animated, otherwise a CGAffine tr
 
 ## How to install
 
-Add this to your CocoaPods Podfile.
-```
+### CocoaPods
+
+The preferred installation method is with [CocoaPods](https://cocoapods.org). Add the following to your `Podfile`:
+
+```ruby
 pod 'IHKeyboardAvoiding'
+```
+
+### Carthage
+
+For [Carthage](https://github.com/Carthage/Carthage), add the following to your `Cartfile`:
+
+```ogdl
+github "IdleHandsApps/IHKeyboardAvoiding"
 ```
 
 ## How to use
