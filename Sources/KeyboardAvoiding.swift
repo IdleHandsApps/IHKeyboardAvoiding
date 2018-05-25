@@ -23,6 +23,7 @@ import UIKit
     private(set) static var isKeyboardVisible = false
     private static var avoidingViewUsesAutoLayout = false
     private static var triggerViews = [UIView]()
+    private static var isChanging = false
     
     public static var buffer: CGFloat = 0.0
     public static var paddingForCurrentAvoidingView: CGFloat = 0.0
@@ -100,6 +101,7 @@ import UIKit
             animationDuration = 0.1
         }
         if isKeyBoardShowing {
+            isChanging = true
             for triggerView in self.triggerViews {
                 
                 //showing and docked
@@ -184,7 +186,9 @@ import UIKit
                                 transform = transform.translatedBy(x: 0, y: displacement)
                                 self.avoidingView!.transform = transform
                             }
-                        }, completion: { _ in })
+                        }, completion: { _ in
+                            isChanging = false
+                        })
                     }
                 }
                 if self.avoidingBlock != nil {
@@ -223,8 +227,10 @@ import UIKit
                         self.avoidingView!.transform = CGAffineTransform.identity
                     }
                 }, completion: {(_ finished: Bool) -> Void in
-                    self.updatedConstraints.removeAll()
-                    self.updatedConstraintConstants.removeAll()
+                    if !isChanging {
+                        self.updatedConstraints.removeAll()
+                        self.updatedConstraintConstants.removeAll()
+                    }
                 })
             }
             if self.avoidingBlock != nil {
