@@ -20,14 +20,14 @@ import UIKit
     private static var lastNotification: Foundation.Notification?
     private static var updatedConstraints = [NSLayoutConstraint]()
     private static var updatedConstraintConstants = [CGFloat]()
-    private(set) static var isKeyboardVisible = false
     private static var avoidingViewUsesAutoLayout = false
     private static var triggerViews = [UIView]()
     private static var showingAnimationCount = 0
     
+    public private(set) static var isKeyboardVisible = false
     public static var buffer: CGFloat = 0.0
     public static var paddingForCurrentAvoidingView: CGFloat = 0.0
-    public static var padding: CGFloat = 0.0 {
+    @objc public static var padding: CGFloat = 0.0 {
         willSet {
             if self.paddingForCurrentAvoidingView == newValue {
                 // if paddingCurrent has been set explicitly, dont reset it
@@ -36,7 +36,7 @@ import UIKit
         }
     }
     public static var keyboardAvoidingMode = KeyboardAvoidingMode.minimum
-    public static var avoidingBlock: ((Bool, CGFloat, CGFloat, UIViewAnimationOptions)->Void)? {
+    @objc public static var avoidingBlock: ((Bool, CGFloat, CGFloat, UIViewAnimationOptions)->Void)? {
         willSet {
             self.initialise()
         }
@@ -47,7 +47,7 @@ import UIKit
         }
     }
     private static var _avoidingView: UIView?
-    public static var avoidingView: UIView? {
+    @objc public static var avoidingView: UIView? {
         get {
             return _avoidingView
         }
@@ -70,7 +70,7 @@ import UIKit
         // hack for bug in iOS 11.2
         let keyboardFrameEnd = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
         keyboardFrameBegin = CGRect(x: keyboardFrameBegin.origin.x, y: keyboardFrameBegin.origin.y, width: keyboardFrameBegin.size.width, height: keyboardFrameEnd.size.height)
-
+        
         var keyboardHeightDiff:CGFloat = 0.0
         if keyboardFrameBegin.size.height > 0 {
             keyboardHeightDiff = keyboardFrameBegin.size.height - keyboardFrame.size.height
@@ -242,7 +242,7 @@ import UIKit
     }
     
     // The triggerView is required if the avoidingView isn't nil
-    public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
+    @objc public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
         self.setAvoidingView(avoidingView, withOptionalTriggerView: triggerView)
     }
     
