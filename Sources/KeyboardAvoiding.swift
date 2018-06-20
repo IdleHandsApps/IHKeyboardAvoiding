@@ -23,7 +23,7 @@ import UIKit
     private(set) static var isKeyboardVisible = false
     private static var avoidingViewUsesAutoLayout = false
     private static var triggerViews = [UIView]()
-    private static var isChanging = false
+    private static var showingAnimationCount = 0
     
     public static var buffer: CGFloat = 0.0
     public static var paddingForCurrentAvoidingView: CGFloat = 0.0
@@ -101,7 +101,7 @@ import UIKit
             animationDuration = 0.1
         }
         if isKeyBoardShowing {
-            isChanging = true
+            self.showingAnimationCount = 0
             for triggerView in self.triggerViews {
                 
                 //showing and docked
@@ -175,6 +175,7 @@ import UIKit
                             }
                             self.avoidingView!.superview!.setNeedsUpdateConstraints()
                         }
+                        self.showingAnimationCount += 1
                         
                         UIView.animate(withDuration: TimeInterval(animationDuration), delay: TimeInterval(delay), options: UIViewAnimationOptions(rawValue: UInt(animationOptions)), animations: {() -> Void in
                             if self.avoidingViewUsesAutoLayout {
@@ -187,7 +188,7 @@ import UIKit
                                 self.avoidingView!.transform = transform
                             }
                         }, completion: { _ in
-                            isChanging = false
+                            self.showingAnimationCount -= 1
                         })
                     }
                 }
@@ -227,7 +228,7 @@ import UIKit
                         self.avoidingView!.transform = CGAffineTransform.identity
                     }
                 }, completion: {(_ finished: Bool) -> Void in
-                    if !isChanging {
+                    if self.showingAnimationCount <= 0 {
                         self.updatedConstraints.removeAll()
                         self.updatedConstraintConstants.removeAll()
                     }
