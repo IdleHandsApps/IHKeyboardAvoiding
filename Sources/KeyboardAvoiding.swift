@@ -69,7 +69,9 @@ import UIKit
         
         // hack for bug in iOS 11.2
         let keyboardFrameEnd = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! CGRect
-        keyboardFrameBegin = CGRect(x: keyboardFrameBegin.origin.x, y: keyboardFrameBegin.origin.y, width: keyboardFrameBegin.size.width, height: keyboardFrameEnd.size.height)
+        if keyboardFrameEnd.size.height > keyboardFrameBegin.size.height {
+            keyboardFrameBegin = CGRect(x: keyboardFrameBegin.origin.x, y: keyboardFrameBegin.origin.y, width: keyboardFrameBegin.size.width, height: keyboardFrameEnd.size.height)
+        }
         
         var keyboardHeightDiff:CGFloat = 0.0
         if keyboardFrameBegin.size.height > 0 {
@@ -125,8 +127,8 @@ import UIKit
                         break
                     }
                 }
+                var displacement = (isPortrait ? -keyboardFrame.size.height : -keyboardFrame.size.width)
                 if diff < self.buffer || keyboardHeightDiff != 0 {
-                    var displacement = (isPortrait ? -keyboardFrame.size.height : -keyboardFrame.size.width)
                     var delay: CGFloat = 0.0
                     switch self.keyboardAvoidingMode {
                     case .maximum:
@@ -193,7 +195,7 @@ import UIKit
                     }
                 }
                 if self.avoidingBlock != nil {
-                    self.avoidingBlock!(isKeyBoardShowing, animationDuration, keyboardFrame.size.height, UIViewAnimationOptions(rawValue: UInt(animationOptions)))
+                    self.avoidingBlock!(isKeyBoardShowing, animationDuration, displacement, UIViewAnimationOptions(rawValue: UInt(animationOptions)))
                 }
             }
             
