@@ -2,7 +2,7 @@
 <img alt="IHKeyboardAvoiding" src="https://github.com/IdleHandsApps/IHKeyboardAvoiding/blob/master/KeyboardAvoiding/KeyboardAvoiding/Assets.xcassets/AppIcon.appiconset/Icon-76.png" />
 </p>
 
-IHKeyboardAvoiding [![Language: Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org)
+IHKeyboardAvoiding [![Language: Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://swift.org)
 ------------------------------
 
 An elegant solution for keeping any UIView visible when the keyboard is being shown

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C1693E8219D1ACE00897260 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4C1693E7219D1ACE00897260 /* README.md */; };
 		4C291DC41E08E01C00507A53 /* IHKeyboardAvoiding.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4C291DC31E08E01C00507A53 /* IHKeyboardAvoiding.podspec */; };
 		4C572D5A1E08C79F00BCBD99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C572D591E08C79F00BCBD99 /* AppDelegate.swift */; };
 		4C572D5C1E08C79F00BCBD99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C572D5B1E08C79F00BCBD99 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C1693E7219D1ACE00897260 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		4C291DC31E08E01C00507A53 /* IHKeyboardAvoiding.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IHKeyboardAvoiding.podspec; path = ../../IHKeyboardAvoiding.podspec; sourceTree = "<group>"; };
 		4C572D561E08C79F00BCBD99 /* KeyboardAvoiding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyboardAvoiding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C572D591E08C79F00BCBD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				4C572D621E08C79F00BCBD99 /* LaunchScreen.storyboard */,
 				4C572D651E08C79F00BCBD99 /* Info.plist */,
 				4C291DC31E08E01C00507A53 /* IHKeyboardAvoiding.podspec */,
+				4C1693E7219D1ACE00897260 /* README.md */,
 			);
 			path = KeyboardAvoiding;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			files = (
 				4C572D641E08C79F00BCBD99 /* LaunchScreen.storyboard in Resources */,
 				4C291DC41E08E01C00507A53 /* IHKeyboardAvoiding.podspec in Resources */,
+				4C1693E8219D1ACE00897260 /* README.md in Resources */,
 				4C572D611E08C79F00BCBD99 /* Assets.xcassets in Resources */,
 				4C572D5F1E08C79F00BCBD99 /* Main.storyboard in Resources */,
 			);
