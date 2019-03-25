@@ -90,9 +90,10 @@ IHKeyboardAvoiding pros:
 
 https://github.com/michaeltyson/TPKeyboardAvoiding (UIScrollView based)  
 https://github.com/kirpichenko/EKKeyboardAvoiding (UIScrollView based)  
-https://github.com/robbdimitrov/RDVKeyboardAvoiding (UIScrollView based) 
-https://github.com/hackiftekhar/IQKeyboardManager (looks interesting) 
-https://github.com/danielamitay/DAKeyboardControl (looks interesting)
+https://github.com/robbdimitrov/RDVKeyboardAvoiding (UIScrollView based)  
+https://github.com/hackiftekhar/IQKeyboardManager (looks interesting)  
+https://github.com/danielamitay/DAKeyboardControl (looks interesting)  
+https://github.com/nathan-fiscaletti/KeyboardLockiOS (looks interesting)
 
 ## Author
 
