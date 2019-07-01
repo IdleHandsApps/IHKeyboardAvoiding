@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "IHKeyboardAvoiding"
-  s.version          = "4.6"
+  s.version          = "4.7"
   s.summary          = "IHKeyboardAvoiding is an elegant solution for keeping any UIView visible when the keyboard is being shown"
 
   s.description      = <<-DESC
@@ -19,7 +19,7 @@ If Autolayout is used then the constraints are animated, otherwise a CGAffine tr
   s.author           = { "Fraser Scott-Morrison" => "fraserscottmorrison@me.com" }
 
   s.ios.deployment_target = "8.0"
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.source           = { :git => "https://github.com/IdleHandsApps/IHKeyboardAvoiding.git", :tag => s.version.to_s }
 

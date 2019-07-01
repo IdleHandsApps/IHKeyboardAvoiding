@@ -272,7 +272,7 @@ import UIKit
     }
     
     public class func removeTriggerView(_ triggerView: UIView) {
-        if let index = triggerViews.index(of: triggerView) {
+        if let index = triggerViews.firstIndex(of: triggerView) {
             self.triggerViews.remove(at: index)
         }
     }
