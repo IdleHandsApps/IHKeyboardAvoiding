@@ -23,6 +23,7 @@ import UIKit
     private static var avoidingViewUsesAutoLayout = false
     private static var triggerViews = [UIView]()
     private static var showingAnimationCount = 0
+    private static var waitForAnimation: (isWaiting: Bool, notification: Notification?) = (false, nil)
     
     public private(set) static var isKeyboardVisible = false
     public static var buffer: CGFloat = 0.0
@@ -222,6 +223,7 @@ import UIKit
                     }
                     self.avoidingView!.superview!.setNeedsUpdateConstraints()
                 }
+                waitForAnimation.isWaiting = true
                 UIView.animate(withDuration: TimeInterval(animationDuration + CGFloat(0.075)), delay: 0, options: UIView.AnimationOptions(rawValue: UInt(animationOptions)), animations: {() -> Void in
                     if self.avoidingViewUsesAutoLayout {
                         self.avoidingView!.superview!.layoutIfNeeded()
@@ -233,6 +235,12 @@ import UIKit
                     if self.showingAnimationCount <= 0 {
                         self.updatedConstraints.removeAll()
                         self.updatedConstraintConstants.removeAll()
+                        // All animations are done, perform queued keyboard events if any are present
+                        waitForAnimation.isWaiting = false
+                        if let notification = waitForAnimation.1 {
+                            waitForAnimation.notification = nil
+                            self.didChange(notification)
+                        }
                     }
                 })
             }
@@ -291,7 +299,13 @@ import UIKit
                 UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
             })
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification, object: nil, queue: OperationQueue.main, using: { notification in
-                self.didChange(notification)
+                // If avoiding view is still in animation from previous keyboard events it cannot be changed right now
+                // Store notification so it can be fire again, when all animations are finished
+                if !waitForAnimation.isWaiting {
+                    self.didChange(notification)
+                } else {
+                    waitForAnimation.notification = notification
+                }
             })
         }
     }
