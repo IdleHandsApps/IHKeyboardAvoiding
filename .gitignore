@@ -6,3 +6,4 @@ Carthage
 *.xcscmblueprint
 
 KeyboardAvoiding/KeyboardAvoiding.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/.swiftpm
