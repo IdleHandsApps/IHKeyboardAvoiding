@@ -58,7 +58,7 @@ import UIKit
     class func didChange(_ notification: Foundation.Notification) {
         var isKeyBoardShowing = false
         // isKeyBoardShowing and is it merged and docked.
-        let isPortrait = (UIApplication.shared.delegate as? AppDelegate)?.getOrientation() == .portrait
+        let isPortrait = UIWindow.getOrientation() == .portrait
         // get the keyboard & window frames
         guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
             return
@@ -130,7 +130,7 @@ import UIKit
                     diff = keyboardHeightDiff
                 } else {
                     let originInWindow = triggerView.convert(triggerView.bounds.origin, to: nil)
-                    switch (UIApplication.shared.delegate as? AppDelegate)?.getOrientation() {
+                    switch UIWindow.getOrientation() {
                     case .portrait, .landscapeLeft:
                         diff = keyboardFrame.origin.y
                         diff -= (originInWindow.y + triggerView.frame.size.height)
@@ -149,7 +149,7 @@ import UIKit
                         self.minimumAnimationDuration = animationDuration
                     case .minimumDelayed:
                         let minimumDisplacement = max(displacement, diff)
-                        self.minimumAnimationDuration = animationDuration * (minimumDisplacement / displacement)
+                        self.minimumAnimationDuration = animationDuration * CGFloat(minimumDisplacement / displacement)
                         displacement = minimumDisplacement - self.paddingForCurrentAvoidingView
                         delay = (animationDuration - self.minimumAnimationDuration)
                         animationDuration = self.minimumAnimationDuration
@@ -344,30 +344,21 @@ import UIKit
 }
 
 extension UIWindow {
-    static var isLandscape: Bool {
+    class func getOrientation() -> UIInterfaceOrientation {
         if #available(iOS 13.0, *) {
-            return UIApplication.shared.windows
-                .first?
-                .windowScene?
-                .interfaceOrientation
-                .isLandscape ?? false
-        } else {
-            return UIApplication.shared.statusBarOrientation.isLandscape
-        }
-    }
+            let sceneFirst = UIApplication.shared.connectedScenes.first
+            guard let windowScene = sceneFirst as? UIWindowScene, windowScene.activationState == .foregroundActive else {
+                return .unknown
+            }
 
-}
-
-extension AppDelegate {
-    func getOrientation() -> UIInterfaceOrientation {
-        let sceneFirst = UIApplication.shared.connectedScenes.first
-        guard let windowScene = sceneFirst as? UIWindowScene, windowScene.activationState == .foregroundActive else {
+            if windowScene.windows.first != nil {
+                return windowScene.interfaceOrientation
+            }
             return .unknown
+        } else {
+            // Fallback on earlier versions
+            return UIApplication.shared.statusBarOrientation
         }
 
-        if windowScene.windows.first != nil {
-            return windowScene.interfaceOrientation
-        }
-        return .unknown
     }
 }
